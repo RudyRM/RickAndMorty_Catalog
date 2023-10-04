@@ -25,7 +25,8 @@ export default function Ejemplo7() {
       const response = await fetch("/api/ejemplo-3", { method: "GET" });
       const data = await response.json();
       console.log("Obteniendo datos desde CLIENTE:", data);
-      setDatos(data);
+      setDatos(data.results);
+      console.log("datos en la posicion 0", datos);
       setLoading(false);
     };
     fetchData();
@@ -44,8 +45,8 @@ export default function Ejemplo7() {
         <CircularProgress isIndeterminate color="green.300" />
       ) : (
         <Container>
-          {datos.map((gato) => (
-            <Gato key={gato.id} gato={gato} />
+          {datos.map((info) => (
+            <Mostrar key={info.name} info={info} />
           ))}
         </Container>
       )}
@@ -53,18 +54,18 @@ export default function Ejemplo7() {
   );
 }
 
-function Gato({ gato }) {
+function Mostrar({ info }) {
   return (
     <Card mb={4}>
-      <CardHeader>{gato.id}</CardHeader>
+      <CardHeader>{info.name}</CardHeader>
       <CardBody>
         <Image
           style={{ margin: "auto" }}
           priority
-          src={gato.url}
-          alt="Un gato"
-          width={gato.width}
-          height={gato.height}
+          src={info.image}
+          alt="Una imagen"
+          width={100}
+          height={100}
         />
       </CardBody>
     </Card>
