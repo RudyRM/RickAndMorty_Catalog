@@ -71,6 +71,3 @@ function Mostrar({ info }) {
     </Card>
   );
 }
-
-// Para ver qué información (atributos) tiene cada gato, ver:
-// https://api.thecatapi.com/v1/images/search?limit=10
