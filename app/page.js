@@ -35,7 +35,7 @@ export default function Ejemplo7() {
   // "montar un componente" o "mount" es cuando se crea el componente y se muestra en pantalla
 
   return (
-    <div className="contenedor center">
+    <div className="contenedor center" id="imagen">
       {/* 
         Loading es true?
         Si -> Mostrar un spinner
@@ -71,6 +71,3 @@ function Mostrar({ info }) {
     </Card>
   );
 }
-
-// Para ver qué información (atributos) tiene cada gato, ver:
-// https://api.thecatapi.com/v1/images/search?limit=10
