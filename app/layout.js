@@ -1,6 +1,5 @@
 import "./globals.css";
 
-// Importamos "Providers": Nos dará acceso a los componentes de Chakra UI
 import { Providers } from "@/app/providers/provider";
 
 export const metadata = {
@@ -12,7 +11,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        {/* Envolvemos todo nuestro contenido */}
         <Providers>
           {children}
         </Providers>

@@ -1,12 +1,12 @@
 .navegacion {
-  background-color: rgb(227, 227, 227); /* Color de fondo */
-  margin-bottom: 4rem; /* Margen inferior */
+  background-color: rgb(227, 227, 227); 
+  margin-bottom: 4rem; 
   color: #505050;
-  padding: 10px 5px; /* Relleno, 10 arriba y abajo, 5 izquierda y derecha */
-  display: flex; /* Mostrar como Flexbox */
-  flex-wrap: wrap; /* Ajustar a la pantalla */
-  justify-content: center; /* Centrar los elementos */
-  gap: 2rem; /* Espacio entre elementos */
+  padding: 10px 5px; 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 2rem; 
   border-bottom: 1px solid #e1e1e1;
 }
 
