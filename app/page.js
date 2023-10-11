@@ -9,6 +9,8 @@ import {
   CircularProgress,
   CardFooter,
   Button,
+  ButtonGroup,
+  Box,
   Input,
   Drawer,
   DrawerBody,
@@ -51,6 +53,10 @@ export default function Main() {
           ))}
         </SimpleGrid>
       )}
+      <ButtonGroup spacing="5rem">
+        <Button>Siguiente pagina</Button>
+        <Button>Anterior pagina</Button>
+      </ButtonGroup>
     </div>
   );
 }
