@@ -1,11 +1,16 @@
 "use client";
 import Image from "next/image";
+import leftIcon from "react";
 import {
   Container,
   Card,
   CardHeader,
   CardBody,
   CircularProgress,
+  CardFooter,
+  Button,
+  ArrowForwardIcon,
+  Stack,
 } from "@chakra-ui/react";
 
 import { useState, useEffect } from "react";
@@ -56,6 +61,11 @@ function Mostrar({ info }) {
           height={100}
         />
       </CardBody>
+      <CardFooter>
+        <Button>
+          Mas información
+        </Button>
+      </CardFooter>
     </Card>
   );
 }
