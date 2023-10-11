@@ -27,8 +27,10 @@ import {ArrowForwardIcon} from "@chakra-ui/icons";
 import { useState, useEffect } from "react";
 
 export default function Main() {
-  const [datos, setDatos] = useState([]);
+  const [datos, setDatos] = useState({});
   const [loading, setLoading] = useState(true);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef();
  
   useEffect(() => {
     console.log("Esto se ejecutará una vez");
@@ -36,7 +38,7 @@ export default function Main() {
       const response = await fetch("/api", { method: "GET" });
       const data = await response.json();
       console.log("Obteniendo datos desde CLIENTE:", data);
-      setDatos(data.results);
+      setDatos(data);
       console.log("datos en la posicion 0", datos);
       setLoading(false);
     };
@@ -49,17 +51,21 @@ export default function Main() {
         <CircularProgress isIndeterminate color="green.300" />
       ) : (
         <SimpleGrid columns={2} spacingX='200px' spacingY='20px'>
-          {datos.map((info) => (
+          {(datos.results).map((info) => (
             <Mostrar key={info.name} info={info} />
           ))}
         </SimpleGrid>
       )}
       <ButtonGroup spacing="5rem">
-        <Button>Siguiente pagina</Button>
-        <Button>Anterior pagina</Button>
-      </ButtonGroup>
+    <Button onClick={CambioPaginaSig} ref={btnRef}>Anterior pagina</Button>
+    <Button>Siguiente pagina</Button>
+  </ButtonGroup>
     </div>
   );
+}
+
+function CambioPaginaSig(){
+  console.log("funca");
 }
 
 function Mostrar({ info }) {
