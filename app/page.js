@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import leftIcon from "react";
+import {useRef} from "react";
 import {
   Container,
   Card,
@@ -9,13 +9,20 @@ import {
   CircularProgress,
   CardFooter,
   Button,
-  ArrowForwardIcon,
-  Stack,
+  Input,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 
 import { useState, useEffect } from "react";
 
-export default function Ejemplo7() {
+export default function Main() {
   const [datos, setDatos] = useState([]);
   const [loading, setLoading] = useState(true);
  
@@ -62,10 +69,44 @@ function Mostrar({ info }) {
         />
       </CardBody>
       <CardFooter>
-        <Button>
-          Mas información
-        </Button>
+        <DrawerInfo />
       </CardFooter>
     </Card>
+  );
+}
+
+function DrawerInfo(){
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef();
+
+  return (
+    <>
+      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+        Mas informacion
+      </Button>
+      <Drawer
+        isOpen={isOpen}
+        placement="right"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+        
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>informacion de personaje seleccionado</DrawerHeader>
+
+          <DrawerBody>
+            
+          </DrawerBody>
+
+          <DrawerFooter>
+            <Button variant="outline" mr={3} onClick={onClose}>
+              Cerrar
+            </Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </>
   );
 }
