@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import {useRef} from "react";
+import { useRef } from "react";
 import {
   Container,
   Card,
@@ -22,7 +22,7 @@ import {
   useDisclosure,
   SimpleGrid,
 } from "@chakra-ui/react";
-import {ArrowForwardIcon} from "@chakra-ui/icons";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
 
 import { useState, useEffect } from "react";
 
@@ -31,7 +31,7 @@ export default function Main() {
   const [loading, setLoading] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
- 
+
   useEffect(() => {
     console.log("Esto se ejecutará una vez");
     const fetchData = async () => {
@@ -57,14 +57,14 @@ export default function Main() {
         </SimpleGrid>
       )}
       <ButtonGroup spacing="5rem">
-    <Button onClick={CambioPaginaSig} ref={btnRef}>Anterior pagina</Button>
-    <Button>Siguiente pagina</Button>
-  </ButtonGroup>
+        <Button onClick={CambioPaginaSig}>Anterior pagina</Button>
+        <Button>Siguiente pagina</Button>
+      </ButtonGroup>
     </div>
   );
 }
 
-function CambioPaginaSig(){
+function CambioPaginaSig() {
   console.log("funca");
 }
 
@@ -89,7 +89,7 @@ function Mostrar({ info }) {
   );
 }
 
-function DrawerInfo(){
+function DrawerInfo() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
 
@@ -103,7 +103,7 @@ function DrawerInfo(){
         placement="right"
         onClose={onClose}
         finalFocusRef={btnRef}
-        
+
       >
         <DrawerOverlay />
         <DrawerContent>
@@ -111,9 +111,7 @@ function DrawerInfo(){
           <DrawerHeader>informacion de personaje seleccionado</DrawerHeader>
 
           <DrawerBody>
-            
           </DrawerBody>
-
           <DrawerFooter>
             <Button variant="outline" mr={3} onClick={onClose}>
               Cerrar
