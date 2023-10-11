@@ -22,6 +22,7 @@ import {
   useDisclosure,
   SimpleGrid,
 } from "@chakra-ui/react";
+import {ArrowForwardIcon} from "@chakra-ui/icons";
 
 import { useState, useEffect } from "react";
 
@@ -88,7 +89,7 @@ function DrawerInfo(){
 
   return (
     <>
-      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+      <Button rightIcon={<ArrowForwardIcon />} ref={btnRef} colorScheme="teal" onClick={onOpen}>
         Mas informacion
       </Button>
       <Drawer
