@@ -18,6 +18,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
+  SimpleGrid,
 } from "@chakra-ui/react";
 
 import { useState, useEffect } from "react";
@@ -44,11 +45,11 @@ export default function Main() {
       {loading ? (
         <CircularProgress isIndeterminate color="green.300" />
       ) : (
-        <Container>
+        <SimpleGrid columns={2} spacingX='200px' spacingY='20px'>
           {datos.map((info) => (
             <Mostrar key={info.name} info={info} />
           ))}
-        </Container>
+        </SimpleGrid>
       )}
     </div>
   );
