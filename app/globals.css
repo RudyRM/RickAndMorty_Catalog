@@ -28,5 +28,5 @@
 }
 
 #imagen{
-  cursor: url('puntero/cursor.cur'), auto;
+  cursor: url('/cursor.cur'), auto;
 }
