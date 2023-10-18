@@ -27,6 +27,7 @@ import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { useState, useEffect } from "react";
 
 export default function Main() {
+  const [pagina, setPagina] = useState("https://rickandmortyapi.com/api/character");
   const [cambio, setCambio] = useState("");
   const [datos, setDatos] = useState({});
   const [loading, setLoading] = useState(true);
@@ -34,27 +35,28 @@ export default function Main() {
   const btnRef = useRef();
 
   useEffect(() => {
-    console.log("Esto se ejecutará una vez");
     const fetchData = async () => {
-      const response = await fetch("https://rickandmortyapi.com/api/character", { method: "GET" });
+      console.log("direccion de la api " + pagina);
+      const response = await fetch(pagina, { method: "GET" });
       const data = await response.json();
       console.log("Obteniendo datos desde CLIENTE:", data);
       setDatos(data);
-      console.log("datos en la posicion 0", datos);
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [pagina]);
 
   const SiguientePag = async () => {
-    var pag = 1;
-    pag += 1;
-    setCambio("?page="+ pag);
-    const response = await fetch("https://rickandmortyapi.com/api/character" + cambio, { method: "GET" });
-    const data = await response.json();
-    console.log("Obteniendo datos desde CLIENTE:", data);
-    setDatos(data);
+    setLoading(true);
+    console.log("direccion siguiente " + datos.info.next);
+    setPagina(datos.info.next);
   };
+  
+  const AnteriorPag = async () => {
+    setLoading(true);
+    console.log("direccion anterior" + datos.info.prev);
+    setPagina(datos.info.prev);
+  }
 
   return (
     <div className="contenedor center" id="imagen">
@@ -63,12 +65,12 @@ export default function Main() {
       ) : (
         <SimpleGrid columns={2} spacingX='200px' spacingY='20px'>
           {(datos.results).map((info) => (
-            <Mostrar key={info.name} info={info} />
+            <Mostrar key={info.id} info={info} />
           ))}
         </SimpleGrid>
       )}
       <ButtonGroup spacing="5rem">
-        <Button>Anterior pagina</Button>
+        <Button onClick={AnteriorPag}>Anterior pagina</Button>
         <Button onClick={SiguientePag}>Siguiente pagina</Button>
       </ButtonGroup>
     </div>
