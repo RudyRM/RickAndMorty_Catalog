@@ -47,16 +47,20 @@ export default function Main() {
   }, [pagina]);
 
   const SiguientePag = async () => {
-    setLoading(true);
-    console.log("direccion siguiente " + datos.info.next);
-    setPagina(datos.info.next);
+    if(datos.info.next != null){
+      setLoading(true);
+      console.log("direccion siguiente " + datos.info.next);
+      setPagina(datos.info.next);
+    }
   };
   
   const AnteriorPag = async () => {
-    setLoading(true);
-    console.log("direccion anterior" + datos.info.prev);
-    setPagina(datos.info.prev);
-  }
+    if(datos.info.prev != null){
+      setLoading(true);
+      console.log("direccion anterior" + datos.info.prev);
+      setPagina(datos.info.prev);
+    }
+  };
 
   return (
     <div className="contenedor center" id="imagen">
