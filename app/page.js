@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useRef } from "react";
 import {
   Container,
+  UnorderedList,
+  List,
   Card,
   CardHeader,
   CardBody,
@@ -21,6 +23,8 @@ import {
   DrawerCloseButton,
   useDisclosure,
   SimpleGrid,
+  Collapse,
+  ListItem,
 } from "@chakra-ui/react";
 import { 
   ArrowForwardIcon,
@@ -30,11 +34,8 @@ import { useState, useEffect } from "react";
 
 export default function Main() {
   const [pagina, setPagina] = useState("https://rickandmortyapi.com/api/character");
-  const [cambio, setCambio] = useState("");
   const [datos, setDatos] = useState({});
   const [loading, setLoading] = useState(true);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,7 +70,7 @@ export default function Main() {
       {loading ? (
         <CircularProgress isIndeterminate color="green.300" />
       ) : (
-        <SimpleGrid columns={2} spacingX='200px' spacingY='20px'>
+        <SimpleGrid columns={{sm: 1, md:2,}} spacingX='200px' spacingY='20px'>
           {(datos.results).map((info) => (
             <Mostrar key={info.id} info={info} />
           ))}
@@ -81,6 +82,33 @@ export default function Main() {
       </ButtonGroup>
     </div>
   );
+}
+
+function CollapseEx({info}) {
+  const { isOpen, onToggle } = useDisclosure()
+  const [scrollBehavior, setScrollBehavior] = useState('inside')
+
+  return (
+    <>
+      <Button onClick={onToggle}>Episodios</Button>
+      <Collapse in={isOpen} animateOpacity>
+        <Box
+          p='40px'
+          color='white'
+          mt='4'
+          bg='teal.500'
+          rounded='md'
+          shadow='md'
+        >
+          <UnorderedList>
+          {info.map((informacion) =>(
+            <ListItem>{informacion}</ListItem>
+            ))}
+          </UnorderedList>
+        </Box>
+      </Collapse>
+    </>
+  )
 }
 
 function Mostrar({ info }) {
@@ -118,7 +146,7 @@ function DrawerInfo({info}) {
         placement="right"
         onClose={onClose}
         finalFocusRef={btnRef}
-
+        size={'lg'}
       >
         <DrawerOverlay />
         <DrawerContent>
@@ -128,14 +156,15 @@ function DrawerInfo({info}) {
           <DrawerBody><p>
            Nombre: {info.name} <br></br>
            ID: {info.id} <br></br>
-           Status: {info.status} <br></br>
-           Specie: {info.species} <br></br>
+           Estatus: {info.status} <br></br>
+           Especie: {info.species} <br></br>
            Tipo: {info.type} <br></br>
            Genero: {info.gender} <br></br>
            Origen: {info.origin.name} <br></br>
            Localizacion: {info.location.name} <br></br>
            Creado: {info.created} <br></br>
           </p>
+          <CollapseEx info={info.episode}/>
           </DrawerBody>
           <DrawerFooter>
             <Button variant="outline" mr={3} onClick={onClose}>
