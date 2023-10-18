@@ -46,22 +46,38 @@ export default function Main() {
   }, []);
 
   return (
-    <div className="contenedor center" id="imagen">
+    <div className="center" id="imagen" >
       {loading ? (
-        <CircularProgress isIndeterminate color="green.300" />
+        <div className="pantalla-carga">
+          <CircularProgress isIndeterminate 
+          color="teal.700"
+          thickness='15px' 
+          size='7vw'/>
+        </div>
       ) : (
-        <SimpleGrid columns={2} spacingX='200px' spacingY='20px'>
-          {(datos.results).map((info) => (
-            <Mostrar key={info.name} info={info} />
-          ))}
-        </SimpleGrid>
+        <div>
+          <div className="logo">
+            <img src={"/rm_logo.png"} />
+          </div>
+
+          <SimpleGrid columns={{ sm: 1, md: 2, }} spacingX='200px' spacingY='20px' marginLeft={150} marginRight={150}>
+            {(datos.results).map((info) => (
+              <Mostrar key={info.name} info={info} />
+            ))}
+          </SimpleGrid>
+
+          <div className="contenedor-botones">
+            <ButtonGroup spacing="5rem">
+              <Button onClick={CambioPaginaSig}>Anterior pagina</Button>
+              <Button>Siguiente pagina</Button>
+            </ButtonGroup>
+          </div>
+        </div>
       )}
-      <ButtonGroup spacing="5rem">
-        <Button onClick={CambioPaginaSig}>Anterior pagina</Button>
-        <Button>Siguiente pagina</Button>
-      </ButtonGroup>
     </div>
   );
+
+
 }
 
 function CambioPaginaSig() {
@@ -70,19 +86,19 @@ function CambioPaginaSig() {
 
 function Mostrar({ info }) {
   return (
-    <Card mb={4}>
+    <Card className="carta" mb={4}>
       <CardHeader>{info.name}</CardHeader>
       <CardBody>
         <Image
-          style={{ margin: "auto" }}
+          className="imagen"
           priority
+          style={{ margin: "auto" }}
           src={info.image}
-          alt="Una imagen"
-          width={100}
-          height={100}
+          width={"100"}
+          height={"100"}
         />
       </CardBody>
-      <CardFooter>
+      <CardFooter className='boton-info'>
         <DrawerInfo />
       </CardFooter>
     </Card>
@@ -95,7 +111,11 @@ function DrawerInfo() {
 
   return (
     <>
-      <Button rightIcon={<ArrowForwardIcon />} ref={btnRef} colorScheme="teal" onClick={onOpen}>
+      <Button
+        rightIcon={<ArrowForwardIcon />}
+        ref={btnRef}
+        colorScheme="teal"
+        onClick={onOpen}>
         Mas informacion
       </Button>
       <Drawer
