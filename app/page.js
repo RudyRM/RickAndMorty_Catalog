@@ -24,6 +24,8 @@ import {
 } from "@chakra-ui/react";
 import { 
   ArrowForwardIcon,
+  ArrowRightIcon,
+  ArrowLeftIcon,
 } from "@chakra-ui/icons";
 
 import { useState, useEffect } from "react";
@@ -53,6 +55,8 @@ export default function Main() {
       setLoading(true);
       console.log("direccion siguiente " + datos.info.next);
       setPagina(datos.info.next);
+    }else{
+    alert("Ultima Pagina");
     }
   };
   
@@ -61,23 +65,48 @@ export default function Main() {
       setLoading(true);
       console.log("direccion anterior" + datos.info.prev);
       setPagina(datos.info.prev);
+    }else{
+      alert("Primera Pagina");
     }
   };
 
+  const UltimaPag = async () => {
+    if(datos.info.next != null){
+    setLoading(true);
+    console.log("ultima direccion" + "https://rickandmortyapi.com/api/character/?page=42")
+    setPagina("https://rickandmortyapi.com/api/character/?page=42")
+    }else{
+      alert("Ultima Pagina");
+    }
+  }
+
+  const PrimeraPag = async () => {
+    if(datos.info.prev != null){
+    setLoading(true);
+    console.log("ultima direccion" + "https://rickandmortyapi.com/api/character/?page=1")
+    setPagina("https://rickandmortyapi.com/api/character/?page=1")
+    }else{
+      alert("Primera Pagina");
+    }
+  }
+
   return (
     <div className="contenedor center" id="imagen">
+      <input placeholder="Busqueda"></input>
       {loading ? (
         <CircularProgress isIndeterminate color="green.300" />
       ) : (
-        <SimpleGrid columns={2} spacingX='200px' spacingY='20px'>
+        <SimpleGrid columns={{sm:1, md:2}} spacingX='200px' spacingY='20px'>
           {(datos.results).map((info) => (
             <Mostrar key={info.id} info={info} />
           ))}
         </SimpleGrid>
       )}
       <ButtonGroup spacing="5rem">
+        <Button onClick={PrimeraPag} leftIcon={<ArrowLeftIcon/>}></Button>
         <Button onClick={AnteriorPag}>Anterior pagina</Button>
         <Button onClick={SiguientePag}>Siguiente pagina</Button>
+        <Button onClick={UltimaPag} rightIcon={<ArrowRightIcon/>}></Button>
       </ButtonGroup>
     </div>
   );
