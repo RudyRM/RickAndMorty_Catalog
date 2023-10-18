@@ -27,6 +27,7 @@ import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { useState, useEffect } from "react";
 
 export default function Main() {
+  const [cambio, setCambio] = useState("");
   const [datos, setDatos] = useState({});
   const [loading, setLoading] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -35,7 +36,7 @@ export default function Main() {
   useEffect(() => {
     console.log("Esto se ejecutará una vez");
     const fetchData = async () => {
-      const response = await fetch("/api", { method: "GET" });
+      const response = await fetch("https://rickandmortyapi.com/api/character", { method: "GET" });
       const data = await response.json();
       console.log("Obteniendo datos desde CLIENTE:", data);
       setDatos(data);
@@ -44,6 +45,16 @@ export default function Main() {
     };
     fetchData();
   }, []);
+
+  const SiguientePag = async () => {
+    var pag = 1;
+    pag += 1;
+    setCambio("?page="+ pag);
+    const response = await fetch("https://rickandmortyapi.com/api/character" + cambio, { method: "GET" });
+    const data = await response.json();
+    console.log("Obteniendo datos desde CLIENTE:", data);
+    setDatos(data);
+  };
 
   return (
     <div className="contenedor center" id="imagen">
@@ -57,15 +68,11 @@ export default function Main() {
         </SimpleGrid>
       )}
       <ButtonGroup spacing="5rem">
-        <Button onClick={CambioPaginaSig}>Anterior pagina</Button>
-        <Button>Siguiente pagina</Button>
+        <Button>Anterior pagina</Button>
+        <Button onClick={SiguientePag}>Siguiente pagina</Button>
       </ButtonGroup>
     </div>
   );
-}
-
-function CambioPaginaSig() {
-  console.log("funca");
 }
 
 function Mostrar({ info }) {
