@@ -22,7 +22,9 @@ import {
   useDisclosure,
   SimpleGrid,
 } from "@chakra-ui/react";
-import { ArrowForwardIcon } from "@chakra-ui/icons";
+import { 
+  ArrowForwardIcon,
+} from "@chakra-ui/icons";
 
 import { useState, useEffect } from "react";
 
@@ -96,13 +98,13 @@ function Mostrar({ info }) {
         />
       </CardBody>
       <CardFooter>
-        <DrawerInfo />
+        <DrawerInfo info={info} />
       </CardFooter>
     </Card>
   );
 }
 
-function DrawerInfo() {
+function DrawerInfo({info}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
 
@@ -123,7 +125,17 @@ function DrawerInfo() {
           <DrawerCloseButton />
           <DrawerHeader>informacion de personaje seleccionado</DrawerHeader>
 
-          <DrawerBody>
+          <DrawerBody><p>
+           Nombre: {info.name} <br></br>
+           ID: {info.id} <br></br>
+           Status: {info.status} <br></br>
+           Specie: {info.species} <br></br>
+           Tipo: {info.type} <br></br>
+           Genero: {info.gender} <br></br>
+           Origen: {info.origin.name} <br></br>
+           Localizacion: {info.location.name} <br></br>
+           Creado: {info.created} <br></br>
+          </p>
           </DrawerBody>
           <DrawerFooter>
             <Button variant="outline" mr={3} onClick={onClose}>
