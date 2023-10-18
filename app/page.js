@@ -92,7 +92,6 @@ export default function Main() {
 
   return (
     <div className="contenedor center" id="imagen">
-      <input placeholder="Busqueda"></input>
       {loading ? (
         <CircularProgress isIndeterminate color="green.300" />
       ) : (
