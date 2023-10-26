@@ -49,6 +49,12 @@ body{
   background-color: rgb(188, 214, 47);
   position: relative;
 }
+.boton-filtro{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 .navegacion a:hover {
   color: #000;

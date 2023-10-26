@@ -105,7 +105,7 @@ export default function Main() {
           <div className="logo">
             <img src={"/rm_logo.png"} />
           </div>
-          <div>
+          <div className="boton-filtro">
             <Button>Filtro</Button>
           </div>
           <SimpleGrid columns={{ sm: 1, md: 2, }} spacingX='200px' spacingY='20px' marginLeft={150} marginRight={150}>
