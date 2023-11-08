@@ -118,13 +118,13 @@ export default function Main() {
           <div className="contenedor-botones">
             <ButtonGroup spacing="5rem">
               <Button className = "boton-avance" onClick={PrimeraPag} leftIcon={<ArrowLeftIcon />}></Button>
-              <Button className = "boton-avance" onClick={AnteriorPag}>Anterior pagina</Button>
-              <Button className = "boton-avance" onClick={SiguientePag}>Siguiente pagina</Button>
+              <Button className = "boton-avance" onClick={AnteriorPag}>Página Anterior</Button>
+              <Button className = "boton-avance" onClick={SiguientePag}>Página siguiente</Button>
               <Button className = "boton-avance" onClick={UltimaPag} rightIcon={<ArrowRightIcon />}></Button>
             </ButtonGroup>
           </div>
         </div>
-      )};
+      )}
     </div>
   )
 }
