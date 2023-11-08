@@ -87,6 +87,12 @@ body{
   align-items: center;
 }
 
+.boton-avance{
+  background-color: rgb(71,179,201);
+  color: white;
+  font-family: myFirstFont;
+}
+
 #imagen{
   cursor: url('/cursor.cur'), auto;
 }
