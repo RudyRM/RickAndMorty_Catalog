@@ -33,6 +33,12 @@ body{
   margin: 20px auto;
 }
 
+.nombre{
+  font: "Times New Roman";
+  font-weight: 100;
+  color: red;
+}
+
 .contenedor-botones{
   display: flex;
   justify-content: center;
@@ -45,10 +51,18 @@ body{
   height: auto;
 }
 
+@font-face {
+  font-family: myFirstFont;
+  src: url('/DiloWorld.ttf');
+}
+
 .carta {
   background-color: rgb(188, 214, 47);
   position: relative;
+  font-family: myFirstFont;
+  font-size: 175%;
 }
+
 .boton-filtro{
   display: flex;
   justify-content: center;
