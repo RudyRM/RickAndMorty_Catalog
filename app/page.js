@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useRef } from "react";
 import {
   Container,
+  UnorderedList,
+  List,
   Card,
   CardHeader,
   CardBody,
@@ -21,8 +23,10 @@ import {
   DrawerCloseButton,
   useDisclosure,
   SimpleGrid,
+  Collapse,
+  ListItem,
 } from "@chakra-ui/react";
-import { 
+import {
   ArrowForwardIcon,
   ArrowRightIcon,
   ArrowLeftIcon,
@@ -32,11 +36,8 @@ import { useState, useEffect } from "react";
 
 export default function Main() {
   const [pagina, setPagina] = useState("https://rickandmortyapi.com/api/character");
-  const [cambio, setCambio] = useState("");
   const [datos, setDatos] = useState({});
   const [loading, setLoading] = useState(true);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,79 +52,122 @@ export default function Main() {
   }, [pagina]);
 
   const SiguientePag = async () => {
-    if(datos.info.next != null){
+    if (datos.info.next != null) {
       setLoading(true);
       console.log("direccion siguiente " + datos.info.next);
       setPagina(datos.info.next);
-    }else{
-    alert("Ultima Pagina");
+    } else {
+      alert("Ultima Pagina");
     }
   };
-  
+
   const AnteriorPag = async () => {
-    if(datos.info.prev != null){
+    if (datos.info.prev != null) {
       setLoading(true);
       console.log("direccion anterior" + datos.info.prev);
       setPagina(datos.info.prev);
-    }else{
+    } else {
       alert("Primera Pagina");
     }
   };
 
   const UltimaPag = async () => {
-    if(datos.info.next != null){
-    setLoading(true);
-    console.log("ultima direccion" + "https://rickandmortyapi.com/api/character/?page=42")
-    setPagina("https://rickandmortyapi.com/api/character/?page=42")
-    }else{
+    if (datos.info.next != null) {
+      setLoading(true);
+      console.log("ultima direccion" + "https://rickandmortyapi.com/api/character/?page=42")
+      setPagina("https://rickandmortyapi.com/api/character/?page=42")
+    } else {
       alert("Ultima Pagina");
     }
   }
 
   const PrimeraPag = async () => {
-    if(datos.info.prev != null){
-    setLoading(true);
-    console.log("ultima direccion" + "https://rickandmortyapi.com/api/character/?page=1")
-    setPagina("https://rickandmortyapi.com/api/character/?page=1")
-    }else{
+    if (datos.info.prev != null) {
+      setLoading(true);
+      console.log("ultima direccion" + "https://rickandmortyapi.com/api/character/?page=1")
+      setPagina("https://rickandmortyapi.com/api/character/?page=1")
+    } else {
       alert("Primera Pagina");
     }
   }
 
   return (
-    <div className="contenedor center" id="imagen">
-      <input placeholder="Busqueda"></input>
+    <div className="center" id="imagen" >
       {loading ? (
-        <CircularProgress isIndeterminate color="green.300" />
+        <div className="pantalla-carga">
+          <CircularProgress isIndeterminate
+            color="teal.700"
+            thickness='15px'
+            size='7vw' />
+        </div>
       ) : (
-        <SimpleGrid columns={{sm:1, md:2}} spacingX='200px' spacingY='20px'>
-          {(datos.results).map((info) => (
-            <Mostrar key={info.id} info={info} />
-          ))}
-        </SimpleGrid>
-      )}
-      <ButtonGroup spacing="5rem">
-        <Button onClick={PrimeraPag} leftIcon={<ArrowLeftIcon/>}></Button>
-        <Button onClick={AnteriorPag}>Anterior pagina</Button>
-        <Button onClick={SiguientePag}>Siguiente pagina</Button>
-        <Button onClick={UltimaPag} rightIcon={<ArrowRightIcon/>}></Button>
-      </ButtonGroup>
+        <div>
+          <div className="logo">
+            <img src={"/rm_logo.png"} />
+          </div>
+          <div className="boton-filtro">
+            <Button>Filtro</Button>
+          </div>
+          <SimpleGrid columns={{ sm: 1, md: 2, }} spacingX='200px' spacingY='20px' marginLeft={150} marginRight={150}>
+            {(datos.results).map((info) => (
+              <Mostrar key={info.name} info={info} />
+            ))}
+          </SimpleGrid>
+
+
+          <div className="contenedor-botones">
+            <ButtonGroup spacing="5rem">
+              <Button onClick={PrimeraPag} leftIcon={<ArrowLeftIcon />}></Button>
+              <Button onClick={AnteriorPag}>Anterior pagina</Button>
+              <Button onClick={SiguientePag}>Siguiente pagina</Button>
+              <Button onClick={UltimaPag} rightIcon={<ArrowRightIcon />}></Button>
+            </ButtonGroup>
+          </div>
+        </div>
+      )};
     </div>
-  );
+  )
+}
+
+function CollapseEx({info}) {
+  const { isOpen, onToggle } = useDisclosure()
+  const [scrollBehavior, setScrollBehavior] = useState('inside')
+
+  return (
+    <>
+      <Button onClick={onToggle}>Episodios</Button>
+      <Collapse in={isOpen} animateOpacity>
+        <Box
+          p='40px'
+          color='white'
+          mt='4'
+          bg='teal.500'
+          rounded='md'
+          shadow='md'
+        >
+          <UnorderedList>
+          {info.map((informacion) =>(
+            <ListItem>{informacion}</ListItem>
+            ))}
+          </UnorderedList>
+        </Box>
+      </Collapse>
+    </>
+  )
 }
 
 function Mostrar({ info }) {
   return (
-    <Card mb={4}>
+    <Card className="carta" mb={4}>
       <CardHeader>{info.name}</CardHeader>
       <CardBody>
         <Image
-          style={{ margin: "auto" }}
+          className="imagen"
           priority
+          style={{ margin: "auto" }}
           src={info.image}
-          alt="Una imagen"
-          width={100}
-          height={100}
+          width={"100"}
+          height={"100"}
         />
       </CardBody>
       <CardFooter>
@@ -133,13 +177,17 @@ function Mostrar({ info }) {
   );
 }
 
-function DrawerInfo({info}) {
+function DrawerInfo({ info }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
 
   return (
     <>
-      <Button rightIcon={<ArrowForwardIcon />} ref={btnRef} colorScheme="teal" onClick={onOpen}>
+      <Button
+        rightIcon={<ArrowForwardIcon />}
+        ref={btnRef}
+        colorScheme="teal"
+        onClick={onOpen}>
         Mas informacion
       </Button>
       <Drawer
@@ -147,7 +195,7 @@ function DrawerInfo({info}) {
         placement="right"
         onClose={onClose}
         finalFocusRef={btnRef}
-
+        size={'lg'}
       >
         <DrawerOverlay />
         <DrawerContent>
@@ -157,14 +205,15 @@ function DrawerInfo({info}) {
           <DrawerBody><p>
            Nombre: {info.name} <br></br>
            ID: {info.id} <br></br>
-           Status: {info.status} <br></br>
-           Specie: {info.species} <br></br>
+           Estatus: {info.status} <br></br>
+           Especie: {info.species} <br></br>
            Tipo: {info.type} <br></br>
            Genero: {info.gender} <br></br>
            Origen: {info.origin.name} <br></br>
            Localizacion: {info.location.name} <br></br>
            Creado: {info.created} <br></br>
           </p>
+          <CollapseEx info={info.episode}/>
           </DrawerBody>
           <DrawerFooter>
             <Button variant="outline" mr={3} onClick={onClose}>
