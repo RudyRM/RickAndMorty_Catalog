@@ -108,6 +108,14 @@ export default function Main() {
           <div className="boton-filtro">
             <Button className="boton-avance">Filtro</Button>
           </div>
+          <div className="contenedor-botones">
+            <ButtonGroup spacing="5rem">
+              <Button className = "boton-avance" onClick={PrimeraPag} leftIcon={<ArrowLeftIcon />}></Button>
+              <Button className = "boton-avance" onClick={AnteriorPag}>Página Anterior</Button>
+              <Button className = "boton-avance" onClick={SiguientePag}>Página siguiente</Button>
+              <Button className = "boton-avance" onClick={UltimaPag} rightIcon={<ArrowRightIcon />}></Button>
+            </ButtonGroup>
+          </div>
           <SimpleGrid columns={{ sm: 1, md: 2, }} spacingX='200px' spacingY='20px' marginLeft={150} marginRight={150}>
             {(datos.results).map((info) => (
               <Mostrar key={info.name} info={info} />
