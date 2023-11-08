@@ -106,7 +106,7 @@ export default function Main() {
             <img src={"/rm_logo.png"} />
           </div>
           <div className="boton-filtro">
-            <Button>Filtro</Button>
+            <Button className="boton-avance">Filtro</Button>
           </div>
           <SimpleGrid columns={{ sm: 1, md: 2, }} spacingX='200px' spacingY='20px' marginLeft={150} marginRight={150}>
             {(datos.results).map((info) => (
