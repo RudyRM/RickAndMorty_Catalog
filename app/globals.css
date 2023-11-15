@@ -1,5 +1,13 @@
+body{
+  background-color: rgb(38, 57, 65); 
+}
+
+.cuerpo{
+  background-color: inherit; 
+}
+
 .navegacion {
-  background-color: rgb(227, 227, 227); 
+  background-color: rgb(255, 56, 56); 
   margin-bottom: 4rem; 
   color: #505050;
   padding: 10px 5px; 
@@ -10,13 +18,66 @@
   border-bottom: 1px solid #e1e1e1;
 }
 
+.pantalla-carga{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(188, 214, 47); 
+}
+
+.logo {
+  width: 60%;
+  height: auto;
+  display: block;
+  margin: 15px auto;
+}
+
+.nombre{
+  font: "Times New Roman";
+  font-weight: 100;
+  color: red;
+}
+
+.contenedor-botones{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.imagen{
+  width: 40vh;
+  height: auto;
+}
+
+@font-face {
+  font-family: myFirstFont;
+  src: url('/DiloWorld.ttf');
+}
+
+.carta {
+  background-color: rgb(188, 214, 47);
+  position: relative;
+  font-family: myFirstFont;
+  font-size: 1.5vw;
+  font-weight:lighter;
+}
+
+.boton-filtro{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .navegacion a:hover {
   color: #000;
 }
 
 .contenedor {
-  max-width: 1200px;
   margin: 0 auto;
+  background-color: rgb(255, 56, 56); 
   padding: 0 1rem;
 }
 
@@ -25,6 +86,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.boton-avance{
+  background-color: rgb(71,179,201);
+  color: white;
+  font-family: myFirstFont;
 }
 
 #imagen{
