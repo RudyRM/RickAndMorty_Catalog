@@ -22,6 +22,13 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
   SimpleGrid,
   Collapse,
   ListItem,
@@ -106,7 +113,15 @@ export default function Main() {
             <img src={"/rm_logo.png"} />
           </div>
           <div className="boton-filtro">
-            <Button>Filtro</Button>
+            <Modalf/>
+          </div>
+          <div className="contenedor-botones">
+            <ButtonGroup spacing="5rem">
+              <Button className = "boton-avance" onClick={PrimeraPag} leftIcon={<ArrowLeftIcon />}></Button>
+              <Button className = "boton-avance" onClick={AnteriorPag}>Página Anterior</Button>
+              <Button className = "boton-avance" onClick={SiguientePag}>Página siguiente</Button>
+              <Button className = "boton-avance" onClick={UltimaPag} rightIcon={<ArrowRightIcon />}></Button>
+            </ButtonGroup>
           </div>
           <SimpleGrid columns={{ sm: 1, md: 2, }} spacingX='200px' spacingY='20px' marginLeft={150} marginRight={150}>
             {(datos.results).map((info) => (
@@ -117,14 +132,14 @@ export default function Main() {
 
           <div className="contenedor-botones">
             <ButtonGroup spacing="5rem">
-              <Button onClick={PrimeraPag} leftIcon={<ArrowLeftIcon />}></Button>
-              <Button onClick={AnteriorPag}>Anterior pagina</Button>
-              <Button onClick={SiguientePag}>Siguiente pagina</Button>
-              <Button onClick={UltimaPag} rightIcon={<ArrowRightIcon />}></Button>
+              <Button className = "boton-avance" onClick={PrimeraPag} leftIcon={<ArrowLeftIcon />}></Button>
+              <Button className = "boton-avance" onClick={AnteriorPag}>Página Anterior</Button>
+              <Button className = "boton-avance" onClick={SiguientePag}>Página siguiente</Button>
+              <Button className = "boton-avance" onClick={UltimaPag} rightIcon={<ArrowRightIcon />}></Button>
             </ButtonGroup>
           </div>
         </div>
-      )};
+      )}
     </div>
   )
 }
@@ -152,6 +167,33 @@ function CollapseEx({info}) {
           </UnorderedList>
         </Box>
       </Collapse>
+    </>
+  )
+}
+
+function Modalf(){
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return(
+    <>
+      <Button onClick={onOpen}>Filtros</Button>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Filtros</ModalHeader>
+          <ModalCloseButton/>
+          <ModalBody>
+            FILTROS
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Cerrar
+            </Button>
+            <Button>Aplicar</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   )
 }
