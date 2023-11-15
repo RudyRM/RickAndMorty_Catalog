@@ -106,7 +106,7 @@ export default function Main() {
       ) : (
         <div>
           <div className="logo">
-            <img src={"/rm_logo.png"} />
+            <img src={"/rm_logo.png"}/>
           </div>
           <div className="boton-filtro">
             <Button className="boton-avance">Filtro</Button>
