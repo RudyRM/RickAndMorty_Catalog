@@ -197,11 +197,19 @@ function DrawerInfo({ info }) {
         size={'lg'}
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent className="carta">
           <DrawerCloseButton />
-          <DrawerHeader>informacion de personaje seleccionado</DrawerHeader>
+          <DrawerHeader>Información: </DrawerHeader>
 
-          <DrawerBody><p>
+          <DrawerBody className="carta"><p>
+            {/* <Image
+            className="imagen"
+            priority
+            style={{ width: '100%', height: '100%' }}
+            src={info.image}
+            width={"100"}
+            height={"100"}
+            /> */}
            Nombre: {info.name} <br></br>
            ID: {info.id} <br></br>
            Estatus: {info.status} <br></br>
@@ -230,7 +238,7 @@ function CollapseEx({info}) {
 
   return (
     <>
-      <Button onClick={onToggle}>Episodios</Button>
+      <Button onClick={onToggle} marginTop={2}>Episodios</Button>
       <Collapse in={isOpen} animateOpacity>
         
         <Box

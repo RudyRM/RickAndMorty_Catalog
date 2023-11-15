@@ -61,6 +61,7 @@ body{
   position: relative;
   font-family: myFirstFont;
   font-size: 1.5vw;
+  font-weight:lighter;
 }
 
 .boton-filtro{
