@@ -10,6 +10,8 @@ import {
   CardBody,
   CircularProgress,
   CardFooter,
+  Checkbox,
+  CheckboxGroup,
   Button,
   ButtonGroup,
   Box,
@@ -22,7 +24,15 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
   SimpleGrid,
+  Stack,
   Collapse,
   ListItem,
   Text,
@@ -39,8 +49,8 @@ export default function Main() {
   const [pagina, setPagina] = useState("https://rickandmortyapi.com/api/character");
   const [datos, setDatos] = useState({});
   const [loading, setLoading] = useState(true);
-  
-  
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -137,7 +147,7 @@ export default function Main() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 function Mostrar({ info }) {
