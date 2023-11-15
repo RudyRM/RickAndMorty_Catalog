@@ -272,6 +272,49 @@ function CollapseEx({info}) {
   )
 }
 
+function Modalf(){
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return(
+    <>
+      <Button onClick={onOpen}>Filtros</Button>
+
+      <Modal isOpen={isOpen} onClose={onClose} size={'lg'}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Filtros</ModalHeader>
+          <ModalCloseButton/>
+          <ModalBody>
+            Genero:
+            <CheckboxGroup colorScheme='green'>
+              <Stack spacing={[1, 4]} direction={['column', 'row']}>
+                <Checkbox value='male'>Male</Checkbox>
+                <Checkbox value='female'>Female</Checkbox>
+                <Checkbox value='genderless'>Genderless</Checkbox>
+                <Checkbox value='unknown'>Unknown</Checkbox>
+              </Stack>
+              Status:
+            </CheckboxGroup>
+            <CheckboxGroup colorScheme='green'>
+              <Stack spacing={[1, 3]} direction={['column', 'row']}>
+                <Checkbox value='alive'>Alive</Checkbox>
+                <Checkbox value='dead'>Dead</Checkbox>
+                <Checkbox value='unknown'>Unknown</Checkbox>
+              </Stack>
+            </CheckboxGroup>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Cerrar
+            </Button>
+            <Button>Aplicar</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  )
+}
+
 function MostrarEpisodios({info}){
   const [episodios, setEpisodios] = useState("");
 
