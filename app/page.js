@@ -119,7 +119,7 @@ export default function Main() {
             <img src={"/rm_logo.png"}/>
           </div>
           <div className="boton-filtro">
-            <Button className="boton-avance">Filtro</Button>
+            <Modalf/>
           </div>
           <div className="contenedor-botones">
             <ButtonGroup spacing="5rem">
@@ -276,7 +276,7 @@ function Modalf(){
   const { isOpen, onOpen, onClose } = useDisclosure();
   return(
     <>
-      <Button onClick={onOpen}>Filtros</Button>
+      <Button onClick={onOpen} className="boton-avance">Filtros</Button>
 
       <Modal isOpen={isOpen} onClose={onClose} size={'lg'}>
         <ModalOverlay />
