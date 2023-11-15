@@ -25,6 +25,7 @@ import {
   SimpleGrid,
   Collapse,
   ListItem,
+  Text,
 } from "@chakra-ui/react";
 import {
   ArrowForwardIcon,
@@ -38,6 +39,8 @@ export default function Main() {
   const [pagina, setPagina] = useState("https://rickandmortyapi.com/api/character");
   const [datos, setDatos] = useState({});
   const [loading, setLoading] = useState(true);
+  
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -137,33 +140,6 @@ export default function Main() {
   )
 }
 
-function CollapseEx({info}) {
-  const { isOpen, onToggle } = useDisclosure()
-  const [scrollBehavior, setScrollBehavior] = useState('inside')
-
-  return (
-    <>
-      <Button onClick={onToggle}>Episodios</Button>
-      <Collapse in={isOpen} animateOpacity>
-        <Box
-          p='40px'
-          color='white'
-          mt='4'
-          bg='teal.500'
-          rounded='md'
-          shadow='md'
-        >
-          <UnorderedList>
-          {info.map((informacion) =>(
-            <ListItem>{informacion}</ListItem>
-            ))}
-          </UnorderedList>
-        </Box>
-      </Collapse>
-    </>
-  )
-}
-
 function Mostrar({ info }) {
   return (
     <Card className="carta" mb={2} size= "sm">
@@ -233,3 +209,52 @@ function DrawerInfo({ info }) {
     </>
   );
 }
+
+function CollapseEx({info}) {
+  const { isOpen, onToggle } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onToggle}>Episodios</Button>
+      <Collapse in={isOpen} animateOpacity>
+        
+        <Box
+          p='40px'
+          color='white'
+          mt='4'
+          bg='teal.500'
+          rounded='md'
+          shadow='md'
+        >
+          <UnorderedList>
+          <Text as='b'>Episodio / Al aire   /   Nombre de episodio</Text>
+          <Text as='div'> <br /> </Text>{/** salto de linea */}
+          {info.map((informacion) =>(
+            <MostrarEpisodios info={informacion}/>
+            ))}
+          </UnorderedList>
+        </Box>
+      </Collapse>
+    </>
+  )
+}
+
+function MostrarEpisodios({info}){
+  const [episodios, setEpisodios] = useState("");
+
+  useEffect(() => {
+    const CambioEpisodios = async () => {
+      const response = await fetch(info, { method: "GET" });
+      const data = await response.json();
+      setEpisodios(data);
+    }
+    CambioEpisodios();
+  }, [episodios]);
+  
+  return(
+    <ListItem>
+      {episodios.episode} ( {episodios.air_date} ); {episodios.name}
+    </ListItem>
+  )
+}
+
