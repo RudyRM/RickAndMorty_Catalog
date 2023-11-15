@@ -10,6 +10,8 @@ import {
   CardBody,
   CircularProgress,
   CardFooter,
+  Checkbox,
+  CheckboxGroup,
   Button,
   ButtonGroup,
   Box,
@@ -30,6 +32,7 @@ import {
   ModalBody,
   ModalCloseButton,
   SimpleGrid,
+  Stack,
   Collapse,
   ListItem,
 } from "@chakra-ui/react";
@@ -177,13 +180,29 @@ function Modalf(){
     <>
       <Button onClick={onOpen}>Filtros</Button>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} size={'lg'}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Filtros</ModalHeader>
           <ModalCloseButton/>
           <ModalBody>
-            FILTROS
+            Genero:
+            <CheckboxGroup colorScheme='green' defaultValue={['male', 'female']}>
+              <Stack spacing={[1, 5]} direction={['column', 'row']}>
+                <Checkbox value='male'>Male</Checkbox>
+                <Checkbox value='female'>Female</Checkbox>
+                <Checkbox value='genderless'>Genderless</Checkbox>
+                <Checkbox value='unknown'>Unknown</Checkbox>
+              </Stack>
+              Status:
+            </CheckboxGroup>
+            <CheckboxGroup colorScheme='green' defaultValue={['Alive', 'Dead']}>
+              <Stack spacing={[1, 5]} direction={['column', 'row']}>
+                <Checkbox value='alive'>Alive</Checkbox>
+                <Checkbox value='dead'>Dead</Checkbox>
+                <Checkbox value='unknown'>Unknown</Checkbox>
+              </Stack>
+            </CheckboxGroup>
           </ModalBody>
 
           <ModalFooter>
