@@ -116,7 +116,7 @@ export default function Main() {
               <Button className = "boton-avance" onClick={UltimaPag} rightIcon={<ArrowRightIcon />}></Button>
             </ButtonGroup>
           </div>
-          <SimpleGrid columns={{ sm: 1, md: 2, }} spacingX='200px' spacingY='20px' marginLeft={150} marginRight={150}>
+          <SimpleGrid columns={{ sm: 2, md: 4, }} spacingX='50px' spacingY='20px' marginLeft={100} marginRight={100}>
             {(datos.results).map((info) => (
               <Mostrar key={info.name} info={info} />
             ))}
@@ -166,13 +166,13 @@ function CollapseEx({info}) {
 
 function Mostrar({ info }) {
   return (
-    <Card className="carta" mb={4}>
+    <Card className="carta" mb={2} size= "sm">
       <CardHeader>{info.name}</CardHeader>
       <CardBody>
         <Image
           className="imagen"
           priority
-          style={{ margin: "auto" }}
+          style={{ width: '100%', height: '100%' }}
           src={info.image}
           width={"100"}
           height={"100"}
