@@ -187,8 +187,8 @@ function Modalf(){
           <ModalCloseButton/>
           <ModalBody>
             Genero:
-            <CheckboxGroup colorScheme='green' defaultValue={['male', 'female']}>
-              <Stack spacing={[1, 5]} direction={['column', 'row']}>
+            <CheckboxGroup colorScheme='green'>
+              <Stack spacing={[1, 4]} direction={['column', 'row']}>
                 <Checkbox value='male'>Male</Checkbox>
                 <Checkbox value='female'>Female</Checkbox>
                 <Checkbox value='genderless'>Genderless</Checkbox>
@@ -196,8 +196,8 @@ function Modalf(){
               </Stack>
               Status:
             </CheckboxGroup>
-            <CheckboxGroup colorScheme='green' defaultValue={['Alive', 'Dead']}>
-              <Stack spacing={[1, 5]} direction={['column', 'row']}>
+            <CheckboxGroup colorScheme='green'>
+              <Stack spacing={[1, 3]} direction={['column', 'row']}>
                 <Checkbox value='alive'>Alive</Checkbox>
                 <Checkbox value='dead'>Dead</Checkbox>
                 <Checkbox value='unknown'>Unknown</Checkbox>
