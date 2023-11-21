@@ -1,67 +1,55 @@
 body{
-  background-color: rgb(38, 57, 65); 
-}
-
-.cuerpo{
-  background-color: inherit; 
-}
-
-.navegacion {
-  background-color: rgb(255, 56, 56); 
-  margin-bottom: 4rem; 
-  color: #505050;
-  padding: 10px 5px; 
-  display: flex; 
-  flex-wrap: wrap; 
-  justify-content: center; 
-  gap: 2rem; 
-  border-bottom: 1px solid #e1e1e1;
+  background-image: url('../public/background.svg');
 }
 
 .pantalla-carga{
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  background-color: rgb(188, 214, 47); 
+  margin: auto;
 }
 
 .logo {
-  width: 60%;
-  height: auto;
-  display: block;
+  width: 90%;
   margin: 15px auto;
-}
-
-.nombre{
-  font: "Times New Roman";
-  font-weight: 100;
-  color: red;
 }
 
 .contenedor-botones{
   display: flex;
   justify-content: center;
-  margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.imagen{
-  width: 40vh;
-  height: auto;
+.grilla-cartas {
+  --spacing-x: 25px;
+  --spacing-y: 20px;
+  margin-left: 25px;
 }
 
-@font-face {
-  font-family: myFirstFont;
-  src: url('/DiloWorld.ttf');
+.grilla-cartas > * {
+  margin-right: var(--spacing-x);
+  margin-bottom: var(--spacing-y);
 }
 
 .carta {
   background-color: rgb(188, 214, 47);
-  position: relative;
   font-family: myFirstFont;
-  font-size: 1.5vw;
-  font-weight:lighter;
+  font-size: 5vw;
+}
+
+.info-header {
+  background-color: rgb(71,179,201);
+  color: white;
+  font-size: 90%;
+  font-family: myFirstFont;
+}
+
+.info {
+  background-color: rgb(188, 214, 47);
+  font-family: myFirstFont;
+  font-size: 64%;
+}
+
+.boton-info{
+  font-size: 3.2vw;
+  width: 100%;
 }
 
 .boton-filtro{
@@ -71,29 +59,77 @@ body{
   margin-bottom: 20px;
 }
 
-.navegacion a:hover {
-  color: #000;
+.boton-avance{
+  background-color: rgb(71,179,201);
+  color: white;
+  font-size: 3.1vw;
+  width: auto;
+  font-family: myFirstFont;
 }
 
-.contenedor {
-  margin: 0 auto;
-  background-color: rgb(255, 56, 56); 
-  padding: 0 1rem;
+.boton-cerrar{
+  background-color: white;
+  color: black;
+  width: 100%;
 }
 
 .center {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-}
-
-.boton-avance{
-  background-color: rgb(71,179,201);
-  color: white;
-  font-family: myFirstFont;
+  height: 100vh;
 }
 
 #imagen{
   cursor: url('/cursor.cur'), auto;
+}
+
+@font-face {
+  font-family: myFirstFont;
+  src: url('/DiloWorld.ttf');
+}
+
+@media (min-width: 992px) {
+  .carta {
+    background-color: rgb(188, 214, 47);
+    font-family: myFirstFont;
+    font-size: 2vw;
+  }
+
+  .boton-info{
+    font-size: 1.3vw;
+    width: 100%;
+  }
+
+  .grilla-cartas {
+    --spacing-x: 50px;
+    --spacing-y: 20px;
+    margin-left: 50px;
+  }
+
+  .boton-avance{
+    background-color: rgb(71,179,201);
+    font-size: 1.8vw;
+    width: auto;
+    font-family: myFirstFont;
+  }
+  
+  .logo {
+    width: 60%;
+    margin: 15px auto;
+  }
+}
+
+@media (min-width: 672px) {
+  .info {
+    background-color: rgb(188, 214, 47);
+    font-family: myFirstFont;
+    font-size: 3.5vh;
+  }
+
+  .info-header {
+    background-color: rgb(71,179,201);
+    color: white;
+    font-size: 4.9vh;
+    font-family: myFirstFont;
+  }
 }
