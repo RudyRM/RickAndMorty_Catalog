@@ -2,9 +2,7 @@
 import Image from "next/image";
 import { useRef } from "react";
 import {
-  Container,
   UnorderedList,
-  List,
   Card,
   CardHeader,
   CardBody,
@@ -13,7 +11,6 @@ import {
   Button,
   ButtonGroup,
   Box,
-  Input,
   Drawer,
   DrawerBody,
   DrawerFooter,
@@ -31,77 +28,51 @@ import {
   ArrowForwardIcon,
   ArrowRightIcon,
   ArrowLeftIcon,
+  ArrowDownIcon
 } from "@chakra-ui/icons";
 
 import { useState, useEffect } from "react";
+import Script from "next/script";
 
 export default function Main() {
   const [pagina, setPagina] = useState("https://rickandmortyapi.com/api/character");
   const [datos, setDatos] = useState({});
   const [loading, setLoading] = useState(true);
-  
-  
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("direccion de la api " + pagina);
       const response = await fetch(pagina, { method: "GET" });
       const data = await response.json();
-      console.log("Obteniendo datos desde CLIENTE:", data);
+
       setDatos(data);
       setLoading(false);
     };
     fetchData();
   }, [pagina]);
 
-  const SiguientePag = async () => {
-    if (datos.info.next != null) {
-      setLoading(true);
-      console.log("direccion siguiente " + datos.info.next);
+  const CambioPagina = async (event) => {
+    const boton = event.target;
+
+    setLoading(true);
+
+    if(boton.id.includes('boton-primera-pag'))
+      setPagina("https://rickandmortyapi.com/api/character?page=1")
+    else if(boton.id.includes('boton-ultima-pag'))
+      setPagina("https://rickandmortyapi.com/api/character?page=42")
+    else if(boton.id.includes('boton-siguiente-pag'))
       setPagina(datos.info.next);
-    } else {
-      alert("Ultima Pagina");
-    }
-  };
-
-  const AnteriorPag = async () => {
-    if (datos.info.prev != null) {
-      setLoading(true);
-      console.log("direccion anterior" + datos.info.prev);
+    else if(boton.id.includes('boton-anterior-pag'))
       setPagina(datos.info.prev);
-    } else {
-      alert("Primera Pagina");
-    }
-  };
-
-  const UltimaPag = async () => {
-    if (datos.info.next != null) {
-      setLoading(true);
-      console.log("ultima direccion" + "https://rickandmortyapi.com/api/character/?page=42")
-      setPagina("https://rickandmortyapi.com/api/character/?page=42")
-    } else {
-      alert("Ultima Pagina");
-    }
-  }
-
-  const PrimeraPag = async () => {
-    if (datos.info.prev != null) {
-      setLoading(true);
-      console.log("ultima direccion" + "https://rickandmortyapi.com/api/character/?page=1")
-      setPagina("https://rickandmortyapi.com/api/character/?page=1")
-    } else {
-      alert("Primera Pagina");
-    }
   }
 
   return (
-    <div className="center" id="imagen" >
+    <div className="center">
       {loading ? (
         <div className="pantalla-carga">
           <CircularProgress isIndeterminate
             color="teal.700"
             thickness='15px'
-            size='7vw' />
+            size='15vh'/>
         </div>
       ) : (
         <div>
@@ -109,31 +80,41 @@ export default function Main() {
             <img src={"/rm_logo.png"}/>
           </div>
           <div className="boton-filtro">
-            <Button className="boton-avance">Filtro</Button>
+            <Button className="boton-avance">Filtros</Button>
           </div>
           <div className="contenedor-botones">
-            <ButtonGroup spacing="5rem">
-              <Button className = "boton-avance" onClick={PrimeraPag} leftIcon={<ArrowLeftIcon />}></Button>
-              <Button className = "boton-avance" onClick={AnteriorPag}>Página Anterior</Button>
-              <Button className = "boton-avance" onClick={SiguientePag}>Página siguiente</Button>
-              <Button className = "boton-avance" onClick={UltimaPag} rightIcon={<ArrowRightIcon />}></Button>
+            <ButtonGroup spacing="2vw">
+              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-primera-pag" leftIcon={<ArrowLeftIcon />}></Button>
+              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-anterior-pag">Página Anterior</Button>
+              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-siguiente-pag">Página siguiente</Button>
+              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-ultima-pag" rightIcon={<ArrowRightIcon />}></Button>
             </ButtonGroup>
           </div>
-          <SimpleGrid columns={{ sm: 2, md: 4, }} spacingX='50px' spacingY='20px' marginLeft={100} marginRight={100}>
+          <SimpleGrid columns={{ base: 2, lg: 4}} className="grilla-cartas">
             {(datos.results).map((info) => (
               <Mostrar key={info.name} info={info} />
             ))}
           </SimpleGrid>
 
-
-          <div className="contenedor-botones">
-            <ButtonGroup spacing="5rem">
-              <Button className = "boton-avance" onClick={PrimeraPag} leftIcon={<ArrowLeftIcon />}></Button>
-              <Button className = "boton-avance" onClick={AnteriorPag}>Página Anterior</Button>
-              <Button className = "boton-avance" onClick={SiguientePag}>Página siguiente</Button>
-              <Button className = "boton-avance" onClick={UltimaPag} rightIcon={<ArrowRightIcon />}></Button>
+          <div>
+            <ButtonGroup spacing="2vw" className="contenedor-botones">
+              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-primera-pag2" leftIcon={<ArrowLeftIcon />}></Button>
+              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-anterior-pag2">Página Anterior</Button>
+              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-siguiente-pag2">Página siguiente</Button>
+              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-ultima-pag2" rightIcon={<ArrowRightIcon />}></Button>
             </ButtonGroup>
           </div>
+          <Script>
+              if ({datos.info.prev == null}) document.getElementById('boton-primera-pag').style.display = 'none';
+              if ({datos.info.prev == null}) document.getElementById('boton-anterior-pag').style.display = 'none';
+              if ({datos.info.next == null}) document.getElementById('boton-siguiente-pag').style.display = 'none';
+              if ({datos.info.next == null}) document.getElementById('boton-ultima-pag').style.display = 'none';
+
+              if ({datos.info.prev == null}) document.getElementById('boton-primera-pag2').style.display = 'none';
+              if ({datos.info.prev == null}) document.getElementById('boton-anterior-pag2').style.display = 'none';
+              if ({datos.info.next == null}) document.getElementById('boton-siguiente-pag2').style.display = 'none';
+              if ({datos.info.next == null}) document.getElementById('boton-ultima-pag2').style.display = 'none';
+          </Script>
         </div>
       )}
     </div>
@@ -147,25 +128,23 @@ function Mostrar({ info }) {
       <CardBody>
         {info.name == "Rick Sanchez" ? (
           <a href= "https://www.youtube.com/watch?v=x4LqqxYQhtQ">
-          <Image
-          className="imagen"
-          priority
-          style={{ width: '100%', height: '100%' }}
-          src={info.image}
-          width={"100"}
-          height={"100"}
-
-        />
-        </a>
+            <Image
+              priority
+              style={{ width: '100%', height: '100%' }}
+              src={info.image}
+              width={"100"}
+              height={"100"}
+            />
+          </a>
         ):(
           <Image
-          className="imagen"
-          priority
-          style={{ width: '100%', height: '100%' }}
-          src={info.image}
-          width={"100"}
-          height={"100"}
-        />
+            className="imagen-personaje"
+            priority
+            style={{ width: '100%', height: 'auto' }}
+            src={info.image}
+            width={"100"}
+            height={"100"}
+          />
         )}
         
       </CardBody>
@@ -180,14 +159,31 @@ function DrawerInfo({ info }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
 
+  var fechaLiteral = info.created;
+  var fechaObjeto = new Date(fechaLiteral);
+
+  var ano = fechaObjeto.getFullYear();
+  var mes = fechaObjeto.getMonth() + 1;
+  var dia = fechaObjeto.getDate();
+
+  var fechaFormato = ano + '-' + refactorizar(mes) + '-' + refactorizar(dia);
+
+  function refactorizar(numero) {
+    if (numero < 10) {
+      return '0' + numero;
+    }
+    return numero;
+  }
+
   return (
     <>
       <Button
-        rightIcon={<ArrowForwardIcon />}
+        className = "boton-info"
+        rightIcon={<ArrowForwardIcon/>}
         ref={btnRef}
         colorScheme="teal"
         onClick={onOpen}>
-        Mas informacion
+        Más información
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -196,34 +192,35 @@ function DrawerInfo({ info }) {
         finalFocusRef={btnRef}
         size={'lg'}
       >
-        <DrawerOverlay />
         <DrawerContent className="carta">
-          <DrawerCloseButton />
-          <DrawerHeader>Información: </DrawerHeader>
-
-          <DrawerBody className="carta"><p>
-            {/* <Image
-            className="imagen"
-            priority
-            style={{ width: '100%', height: '100%' }}
-            src={info.image}
-            width={"100"}
-            height={"100"}
-            /> */}
-           Nombre: {info.name} <br></br>
-           ID: {info.id} <br></br>
-           Estatus: {info.status} <br></br>
-           Especie: {info.species} <br></br>
-           Tipo: {info.type} <br></br>
-           Genero: {info.gender} <br></br>
-           Origen: {info.origin.name} <br></br>
-           Localizacion: {info.location.name} <br></br>
-           Creado: {info.created} <br></br>
-          </p>
-          <CollapseEx info={info.episode}/>
+          <DrawerCloseButton/>
+          <DrawerHeader className="info-header">Información:</DrawerHeader>
+          <DrawerBody className="info">
+            <SimpleGrid columns={{base: 2}}>
+              <Image
+                className="imagen-personaje"
+                priority
+                style={{ width: '90%', height: 'auto' }}
+                src={info.image}
+                width={"100"}
+                height={"100"}
+              />
+              <p>
+                Nombre: {info.name} <br></br>
+                Estatus: {info.status} <br></br>
+                Especie: {info.species} <br></br>
+                Tipo: {info.type} <br></br>
+                Género: {info.gender} <br></br>
+                Orígen: {info.origin.name} <br></br>
+                Localización: {info.location.name} <br></br>
+                Creación: {fechaFormato} <br></br>
+                <></>
+              </p>
+            </SimpleGrid>
+            <CollapseEx info={info.episode}/>
           </DrawerBody>
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
+            <Button className="boton-cerrar" variant="outline" mr={3} onClick={onClose}>
               Cerrar
             </Button>
           </DrawerFooter>
@@ -238,7 +235,7 @@ function CollapseEx({info}) {
 
   return (
     <>
-      <Button onClick={onToggle} marginTop={2}>Episodios</Button>
+      <Button className="boton-cerrar" onClick={onToggle} marginTop={2} leftIcon={<ArrowDownIcon />} rightIcon={<ArrowDownIcon />}>Episodios</Button>
       <Collapse in={isOpen} animateOpacity>
         
         <Box
@@ -247,14 +244,13 @@ function CollapseEx({info}) {
           mt='4'
           bg='teal.500'
           rounded='md'
-          shadow='md'
         >
           <UnorderedList>
-          <Text as='b'>Episodio / Al aire   /   Nombre de episodio</Text>
-          <Text as='div'> <br /> </Text>{/** salto de linea */}
-          {info.map((informacion) =>(
-            <MostrarEpisodios info={informacion}/>
-            ))}
+            <Text as='b'>Episodio / Al aire / Nombre de episodio</Text>
+            <Text as='div'> <br /> </Text>{/* salto de linea */}
+            {info.map((informacion) =>(
+              <MostrarEpisodios info={informacion}/>
+              ))}
           </UnorderedList>
         </Box>
       </Collapse>
