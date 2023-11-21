@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useLocalStorage } from "./useLocalStorage";
-import { useRef } from "react";
+import { DrawerInfo } from "./drawerInfo";
+
 import {
   Container,
   UnorderedList,
@@ -99,7 +100,7 @@ export default function Main() {
 
   return (
     <div className="center" id="imagen" >
-      <Button onClick={()=>setLikes("234")} />
+      <Button onClick={()=>setLikes("23")} />
       {likes}
       {loading ? (
         <div className="pantalla-carga">
@@ -180,109 +181,3 @@ function Mostrar({ info }) {
     </Card>
   );
 }
-
-function DrawerInfo({ info }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef();
-
-  return (
-    <>
-      <Button
-        rightIcon={<ArrowForwardIcon />}
-        ref={btnRef}
-        colorScheme="teal"
-        onClick={onOpen}>
-        Mas informacion
-      </Button>
-      <Drawer
-        isOpen={isOpen}
-        placement="right"
-        onClose={onClose}
-        finalFocusRef={btnRef}
-        size={'lg'}
-      >
-        <DrawerOverlay />
-        <DrawerContent className="carta">
-          <DrawerCloseButton />
-          <DrawerHeader>Información: </DrawerHeader>
-
-          <DrawerBody className="carta"><p>
-            {/* <Image
-            className="imagen"
-            priority
-            style={{ width: '100%', height: '100%' }}
-            src={info.image}
-            width={"100"}
-            height={"100"}
-            /> */}
-           Nombre: {info.name} <br></br>
-           ID: {info.id} <br></br>
-           Estatus: {info.status} <br></br>
-           Especie: {info.species} <br></br>
-           Tipo: {info.type} <br></br>
-           Genero: {info.gender} <br></br>
-           Origen: {info.origin.name} <br></br>
-           Localizacion: {info.location.name} <br></br>
-           Creado: {info.created} <br></br>
-          </p>
-          <CollapseEx info={info.episode}/>
-          </DrawerBody>
-          <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cerrar
-            </Button>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
-    </>
-  );
-}
-
-function CollapseEx({info}) {
-  const { isOpen, onToggle } = useDisclosure()
-
-  return (
-    <>
-      <Button onClick={onToggle} marginTop={2}>Episodios</Button>
-      <Collapse in={isOpen} animateOpacity>
-        
-        <Box
-          p='40px'
-          color='white'
-          mt='4'
-          bg='teal.500'
-          rounded='md'
-          shadow='md'
-        >
-          <UnorderedList>
-          <Text as='b'>Episodio / Al aire   /   Nombre de episodio</Text>
-          <Text as='div'> <br /> </Text>{/** salto de linea */}
-          {info.map((informacion) =>(
-            <MostrarEpisodios info={informacion}/>
-            ))}
-          </UnorderedList>
-        </Box>
-      </Collapse>
-    </>
-  )
-}
-
-function MostrarEpisodios({info}){
-  const [episodios, setEpisodios] = useState("");
-
-  useEffect(() => {
-    const CambioEpisodios = async () => {
-      const response = await fetch(info, { method: "GET" });
-      const data = await response.json();
-      setEpisodios(data);
-    }
-    CambioEpisodios();
-  }, [episodios]);
-  
-  return(
-    <ListItem>
-      {episodios.episode} ( {episodios.air_date} ); {episodios.name}
-    </ListItem>
-  )
-}
-
