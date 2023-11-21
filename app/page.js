@@ -116,6 +116,7 @@ export default function Main() {
               <Button className = "boton-avance" onClick={CambioPagina} id = "boton-ultima-pag2" rightIcon={<ArrowRightIcon />}></Button>
             </ButtonGroup>
           </div>
+          <Text className="texto-company">Copyright © 2023 MERF Company. Todos los derechos reservados. Chile</Text>
           <Script>
               if ({datos.info.prev == null}) document.getElementById('boton-primera-pag').style.display = 'none';
               if ({datos.info.prev == null}) document.getElementById('boton-anterior-pag').style.display = 'none';
@@ -152,7 +153,7 @@ function Mostrar({ info }) {
           <Image
             className="imagen-personaje"
             priority
-            style={{ width: '100%', height: 'auto' }}
+            style={{ width: '100%', height: 'auto', borderRadius: '4%'}}
             src={info.image}
             width={"100"}
             height={"100"}
@@ -212,7 +213,7 @@ function DrawerInfo({ info }) {
               <Image
                 className="imagen-personaje"
                 priority
-                style={{ width: '90%', height: 'auto' }}
+                style={{ width: '90%', height: 'auto', borderRadius: '4%' }}
                 src={info.image}
                 width={"100"}
                 height={"100"}
@@ -247,7 +248,7 @@ function CollapseEx({info}) {
 
   return (
     <>
-      <Button className="boton-cerrar" onClick={onToggle} marginTop={2} leftIcon={<ArrowDownIcon />} rightIcon={<ArrowDownIcon />}>Episodios</Button>
+      <Button className="boton-episodios" onClick={onToggle} marginTop={2} leftIcon={<ArrowDownIcon />} rightIcon={<ArrowDownIcon />}>Episodios</Button>
       <Collapse in={isOpen} animateOpacity>
         
         <Box

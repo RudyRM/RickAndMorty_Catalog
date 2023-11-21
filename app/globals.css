@@ -52,6 +52,15 @@ body{
   width: 100%;
 }
 
+.boton-episodios{
+  background-color: rgb(49,151,149);
+  color: white;
+  width: 100%;
+  &:hover {
+    background-color: rgb(44,122,123);
+  }
+}
+
 .boton-filtro{
   display: flex;
   justify-content: center;
@@ -77,6 +86,13 @@ body{
   display: flex;
   justify-content: center;
   height: 100vh;
+}
+
+.texto-company{
+  display: flex;
+  justify-content: center;
+  color: white;
+  background-color: rgb(44,122,123);
 }
 
 #imagen{
@@ -111,6 +127,10 @@ body{
     font-size: 1.8vw;
     width: auto;
     font-family: myFirstFont;
+
+    &:hover {
+      background-color: rgb(59, 146, 164);
+    }
   }
   
   .logo {
