@@ -8,6 +8,8 @@ import {
   CardBody,
   CircularProgress,
   CardFooter,
+  Checkbox,
+  CheckboxGroup,
   Button,
   ButtonGroup,
   Box,
@@ -19,7 +21,15 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
   SimpleGrid,
+  Stack,
   Collapse,
   ListItem,
   Text,
@@ -38,6 +48,8 @@ export default function Main() {
   const [pagina, setPagina] = useState("https://rickandmortyapi.com/api/character");
   const [datos, setDatos] = useState({});
   const [loading, setLoading] = useState(true);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,7 +92,7 @@ export default function Main() {
             <img src={"/rm_logo.png"}/>
           </div>
           <div className="boton-filtro">
-            <Button className="boton-avance">Filtros</Button>
+            <Modalf/>
           </div>
           <div className="contenedor-botones">
             <ButtonGroup spacing="2vw">
@@ -118,7 +130,7 @@ export default function Main() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 function Mostrar({ info }) {
@@ -254,6 +266,49 @@ function CollapseEx({info}) {
           </UnorderedList>
         </Box>
       </Collapse>
+    </>
+  )
+}
+
+function Modalf(){
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return(
+    <>
+      <Button onClick={onOpen} className="boton-avance">Filtros</Button>
+
+      <Modal isOpen={isOpen} onClose={onClose} size={'lg'}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Filtros</ModalHeader>
+          <ModalCloseButton/>
+          <ModalBody>
+            Genero:
+            <CheckboxGroup colorScheme='green'>
+              <Stack spacing={[1, 4]} direction={['column', 'row']}>
+                <Checkbox value='male'>Male</Checkbox>
+                <Checkbox value='female'>Female</Checkbox>
+                <Checkbox value='genderless'>Genderless</Checkbox>
+                <Checkbox value='unknown'>Unknown</Checkbox>
+              </Stack>
+              Status:
+            </CheckboxGroup>
+            <CheckboxGroup colorScheme='green'>
+              <Stack spacing={[1, 3]} direction={['column', 'row']}>
+                <Checkbox value='alive'>Alive</Checkbox>
+                <Checkbox value='dead'>Dead</Checkbox>
+                <Checkbox value='unknown'>Unknown</Checkbox>
+              </Stack>
+            </CheckboxGroup>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Cerrar
+            </Button>
+            <Button>Aplicar</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   )
 }

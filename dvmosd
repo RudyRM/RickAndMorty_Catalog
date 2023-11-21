@@ -1,0 +1,612 @@
+[1mdiff --git a/app/globals.css b/app/globals.css[m
+[1mindex fd5fbe8..2ca602f 100644[m
+[1m--- a/app/globals.css[m
+[1m+++ b/app/globals.css[m
+[36m@@ -1,55 +1,67 @@[m
+ body{[m
+[31m-  background-image: url('../public/background.svg');[m
+[32m+[m[32m  background-color: rgb(38, 57, 65);[m[41m [m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m.cuerpo{[m
+[32m+[m[32m  background-color: inherit;[m[41m [m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m.navegacion {[m
+[32m+[m[32m  background-color: rgb(255, 56, 56);[m[41m [m
+[32m+[m[32m  margin-bottom: 4rem;[m[41m [m
+[32m+[m[32m  color: #505050;[m
+[32m+[m[32m  padding: 10px 5px;[m[41m [m
+[32m+[m[32m  display: flex;[m[41m [m
+[32m+[m[32m  flex-wrap: wrap;[m[41m [m
+[32m+[m[32m  justify-content: center;[m[41m [m
+[32m+[m[32m  gap: 2rem;[m[41m [m
+[32m+[m[32m  border-bottom: 1px solid #e1e1e1;[m
+ }[m
+ [m
+ .pantalla-carga{[m
+[31m-  margin: auto;[m
+[32m+[m[32m  height: 100vh;[m
+[32m+[m[32m  width: 100vw;[m
+[32m+[m[32m  display: flex;[m
+[32m+[m[32m  justify-content: center;[m
+[32m+[m[32m  background-color: rgb(188, 214, 47);[m[41m [m
+ }[m
+ [m
+ .logo {[m
+[31m-  width: 90%;[m
+[32m+[m[32m  width: 60%;[m
+[32m+[m[32m  height: auto;[m
+[32m+[m[32m  display: block;[m
+   margin: 15px auto;[m
+ }[m
+ [m
+[32m+[m[32m.nombre{[m
+[32m+[m[32m  font: "Times New Roman";[m
+[32m+[m[32m  font-weight: 100;[m
+[32m+[m[32m  color: red;[m
+[32m+[m[32m}[m
+[32m+[m
+ .contenedor-botones{[m
+   display: flex;[m
+   justify-content: center;[m
+[32m+[m[32m  margin-top: 20px;[m
+   margin-bottom: 20px;[m
+ }[m
+ [m
+[31m-.grilla-cartas {[m
+[31m-  --spacing-x: 25px;[m
+[31m-  --spacing-y: 20px;[m
+[31m-  margin-left: 25px;[m
+[31m-}[m
+[31m-[m
+[31m-.grilla-cartas > * {[m
+[31m-  margin-right: var(--spacing-x);[m
+[31m-  margin-bottom: var(--spacing-y);[m
+[32m+[m[32m.imagen{[m
+[32m+[m[32m  width: 40vh;[m
+[32m+[m[32m  height: auto;[m
+ }[m
+ [m
+[31m-.carta {[m
+[31m-  background-color: rgb(188, 214, 47);[m
+[31m-  font-family: myFirstFont;[m
+[31m-  font-size: 5vw;[m
+[31m-}[m
+[31m-[m
+[31m-.info-header {[m
+[31m-  background-color: rgb(71,179,201);[m
+[31m-  color: white;[m
+[31m-  font-size: 90%;[m
+[32m+[m[32m@font-face {[m
+   font-family: myFirstFont;[m
+[32m+[m[32m  src: url('/DiloWorld.ttf');[m
+ }[m
+ [m
+[31m-.info {[m
+[32m+[m[32m.carta {[m
+   background-color: rgb(188, 214, 47);[m
+[32m+[m[32m  position: relative;[m
+   font-family: myFirstFont;[m
+[31m-  font-size: 64%;[m
+[31m-}[m
+[31m-[m
+[31m-.boton-info{[m
+[31m-  font-size: 3.2vw;[m
+[31m-  width: 100%;[m
+[32m+[m[32m  font-size: 1.5vw;[m
+[32m+[m[32m  font-weight:lighter;[m
+ }[m
+ [m
+ .boton-filtro{[m
+[36m@@ -59,77 +71,29 @@[m [mbody{[m
+   margin-bottom: 20px;[m
+ }[m
+ [m
+[31m-.boton-avance{[m
+[31m-  background-color: rgb(71,179,201);[m
+[31m-  color: white;[m
+[31m-  font-size: 3.1vw;[m
+[31m-  width: auto;[m
+[31m-  font-family: myFirstFont;[m
+[32m+[m[32m.navegacion a:hover {[m
+[32m+[m[32m  color: #000;[m
+ }[m
+ [m
+[31m-.boton-cerrar{[m
+[31m-  background-color: white;[m
+[31m-  color: black;[m
+[31m-  width: 100%;[m
+[32m+[m[32m.contenedor {[m
+[32m+[m[32m  margin: 0 auto;[m
+[32m+[m[32m  background-color: rgb(255, 56, 56);[m[41m [m
+[32m+[m[32m  padding: 0 1rem;[m
+ }[m
+ [m
+ .center {[m
+   display: flex;[m
+[32m+[m[32m  flex-direction: column;[m
+   justify-content: center;[m
+[31m-  height: 100vh;[m
+[32m+[m[32m  align-items: center;[m
+ }[m
+ [m
+[31m-#imagen{[m
+[31m-  cursor: url('/cursor.cur'), auto;[m
+[31m-}[m
+[31m-[m
+[31m-@font-face {[m
+[32m+[m[32m.boton-avance{[m
+[32m+[m[32m  background-color: rgb(71,179,201);[m
+[32m+[m[32m  color: white;[m
+   font-family: myFirstFont;[m
+[31m-  src: url('/DiloWorld.ttf');[m
+ }[m
+ [m
+[31m-@media (min-width: 992px) {[m
+[31m-  .carta {[m
+[31m-    background-color: rgb(188, 214, 47);[m
+[31m-    font-family: myFirstFont;[m
+[31m-    font-size: 2vw;[m
+[31m-  }[m
+[31m-[m
+[31m-  .boton-info{[m
+[31m-    font-size: 1.3vw;[m
+[31m-    width: 100%;[m
+[31m-  }[m
+[31m-[m
+[31m-  .grilla-cartas {[m
+[31m-    --spacing-x: 50px;[m
+[31m-    --spacing-y: 20px;[m
+[31m-    margin-left: 50px;[m
+[31m-  }[m
+[31m-[m
+[31m-  .boton-avance{[m
+[31m-    background-color: rgb(71,179,201);[m
+[31m-    font-size: 1.8vw;[m
+[31m-    width: auto;[m
+[31m-    font-family: myFirstFont;[m
+[31m-  }[m
+[31m-  [m
+[31m-  .logo {[m
+[31m-    width: 60%;[m
+[31m-    margin: 15px auto;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-@media (min-width: 672px) {[m
+[31m-  .info {[m
+[31m-    background-color: rgb(188, 214, 47);[m
+[31m-    font-family: myFirstFont;[m
+[31m-    font-size: 3.5vh;[m
+[31m-  }[m
+[31m-[m
+[31m-  .info-header {[m
+[31m-    background-color: rgb(71,179,201);[m
+[31m-    color: white;[m
+[31m-    font-size: 4.9vh;[m
+[31m-    font-family: myFirstFont;[m
+[31m-  }[m
+[32m+[m[32m#imagen{[m
+[32m+[m[32m  cursor: url('/cursor.cur'), auto;[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/app/page.js b/app/page.js[m
+[1mindex 8838aca..cdf67cf 100644[m
+[1m--- a/app/page.js[m
+[1m+++ b/app/page.js[m
+[36m@@ -2,15 +2,20 @@[m
+ import Image from "next/image";[m
+ import { useRef } from "react";[m
+ import {[m
+[32m+[m[32m  Container,[m
+   UnorderedList,[m
+[32m+[m[32m  List,[m
+   Card,[m
+   CardHeader,[m
+   CardBody,[m
+   CircularProgress,[m
+   CardFooter,[m
+[32m+[m[32m  Checkbox,[m
+[32m+[m[32m  CheckboxGroup,[m
+   Button,[m
+   ButtonGroup,[m
+   Box,[m
+[32m+[m[32m  Input,[m
+   Drawer,[m
+   DrawerBody,[m
+   DrawerFooter,[m
+[36m@@ -19,7 +24,15 @@[m [mimport {[m
+   DrawerContent,[m
+   DrawerCloseButton,[m
+   useDisclosure,[m
+[32m+[m[32m  Modal,[m
+[32m+[m[32m  ModalOverlay,[m
+[32m+[m[32m  ModalContent,[m
+[32m+[m[32m  ModalHeader,[m
+[32m+[m[32m  ModalFooter,[m
+[32m+[m[32m  ModalBody,[m
+[32m+[m[32m  ModalCloseButton,[m
+   SimpleGrid,[m
+[32m+[m[32m  Stack,[m
+   Collapse,[m
+   ListItem,[m
+   Text,[m
+[36m@@ -28,51 +41,77 @@[m [mimport {[m
+   ArrowForwardIcon,[m
+   ArrowRightIcon,[m
+   ArrowLeftIcon,[m
+[31m-  ArrowDownIcon[m
+ } from "@chakra-ui/icons";[m
+ [m
+ import { useState, useEffect } from "react";[m
+[31m-import Script from "next/script";[m
+ [m
+ export default function Main() {[m
+   const [pagina, setPagina] = useState("https://rickandmortyapi.com/api/character");[m
+   const [datos, setDatos] = useState({});[m
+   const [loading, setLoading] = useState(true);[m
+[32m+[m[32m  const { isOpen, onOpen, onClose } = useDisclosure();[m
+[32m+[m[32m  const btnRef = useRef();[m
+ [m
+   useEffect(() => {[m
+     const fetchData = async () => {[m
+[32m+[m[32m      console.log("direccion de la api " + pagina);[m
+       const response = await fetch(pagina, { method: "GET" });[m
+       const data = await response.json();[m
+[31m-[m
+[32m+[m[32m      console.log("Obteniendo datos desde CLIENTE:", data);[m
+       setDatos(data);[m
+       setLoading(false);[m
+     };[m
+     fetchData();[m
+   }, [pagina]);[m
+ [m
+[31m-  const CambioPagina = async (event) => {[m
+[31m-    const boton = event.target;[m
+[31m-[m
+[31m-    setLoading(true);[m
+[31m-[m
+[31m-    if(boton.id.includes('boton-primera-pag'))[m
+[31m-      setPagina("https://rickandmortyapi.com/api/character?page=1")[m
+[31m-    else if(boton.id.includes('boton-ultima-pag'))[m
+[31m-      setPagina("https://rickandmortyapi.com/api/character?page=42")[m
+[31m-    else if(boton.id.includes('boton-siguiente-pag'))[m
+[32m+[m[32m  const SiguientePag = async () => {[m
+[32m+[m[32m    if (datos.info.next != null) {[m
+[32m+[m[32m      setLoading(true);[m
+[32m+[m[32m      console.log("direccion siguiente " + datos.info.next);[m
+       setPagina(datos.info.next);[m
+[31m-    else if(boton.id.includes('boton-anterior-pag'))[m
+[32m+[m[32m    } else {[m
+[32m+[m[32m      alert("Ultima Pagina");[m
+[32m+[m[32m    }[m
+[32m+[m[32m  };[m
+[32m+[m
+[32m+[m[32m  const AnteriorPag = async () => {[m
+[32m+[m[32m    if (datos.info.prev != null) {[m
+[32m+[m[32m      setLoading(true);[m
+[32m+[m[32m      console.log("direccion anterior" + datos.info.prev);[m
+       setPagina(datos.info.prev);[m
+[32m+[m[32m    } else {[m
+[32m+[m[32m      alert("Primera Pagina");[m
+[32m+[m[32m    }[m
+[32m+[m[32m  };[m
+[32m+[m
+[32m+[m[32m  const UltimaPag = async () => {[m
+[32m+[m[32m    if (datos.info.next != null) {[m
+[32m+[m[32m      setLoading(true);[m
+[32m+[m[32m      console.log("ultima direccion" + "https://rickandmortyapi.com/api/character/?page=42")[m
+[32m+[m[32m      setPagina("https://rickandmortyapi.com/api/character/?page=42")[m
+[32m+[m[32m    } else {[m
+[32m+[m[32m      alert("Ultima Pagina");[m
+[32m+[m[32m    }[m
+[32m+[m[32m  }[m
+[32m+[m
+[32m+[m[32m  const PrimeraPag = async () => {[m
+[32m+[m[32m    if (datos.info.prev != null) {[m
+[32m+[m[32m      setLoading(true);[m
+[32m+[m[32m      console.log("ultima direccion" + "https://rickandmortyapi.com/api/character/?page=1")[m
+[32m+[m[32m      setPagina("https://rickandmortyapi.com/api/character/?page=1")[m
+[32m+[m[32m    } else {[m
+[32m+[m[32m      alert("Primera Pagina");[m
+[32m+[m[32m    }[m
+   }[m
+ [m
+   return ([m
+[31m-    <div className="center">[m
+[32m+[m[32m    <div className="center" id="imagen" >[m
+       {loading ? ([m
+         <div className="pantalla-carga">[m
+           <CircularProgress isIndeterminate[m
+             color="teal.700"[m
+             thickness='15px'[m
+[31m-            size='15vh'/>[m
+[32m+[m[32m            size='7vw' />[m
+         </div>[m
+       ) : ([m
+         <div>[m
+[36m@@ -80,45 +119,35 @@[m [mexport default function Main() {[m
+             <img src={"/rm_logo.png"}/>[m
+           </div>[m
+           <div className="boton-filtro">[m
+[31m-            <Button className="boton-avance">Filtros</Button>[m
+[32m+[m[32m            <Modalf/>[m
+           </div>[m
+           <div className="contenedor-botones">[m
+[31m-            <ButtonGroup spacing="2vw">[m
+[31m-              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-primera-pag" leftIcon={<ArrowLeftIcon />}></Button>[m
+[31m-              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-anterior-pag">Página Anterior</Button>[m
+[31m-              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-siguiente-pag">Página siguiente</Button>[m
+[31m-              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-ultima-pag" rightIcon={<ArrowRightIcon />}></Button>[m
+[32m+[m[32m            <ButtonGroup spacing="5rem">[m
+[32m+[m[32m              <Button className = "boton-avance" onClick={PrimeraPag} leftIcon={<ArrowLeftIcon />}></Button>[m
+[32m+[m[32m              <Button className = "boton-avance" onClick={AnteriorPag}>Página Anterior</Button>[m
+[32m+[m[32m              <Button className = "boton-avance" onClick={SiguientePag}>Página siguiente</Button>[m
+[32m+[m[32m              <Button className = "boton-avance" onClick={UltimaPag} rightIcon={<ArrowRightIcon />}></Button>[m
+             </ButtonGroup>[m
+           </div>[m
+[31m-          <SimpleGrid columns={{ base: 2, lg: 4}} className="grilla-cartas">[m
+[32m+[m[32m          <SimpleGrid columns={{ sm: 2, md: 4, }} spacingX='50px' spacingY='20px' marginLeft={100} marginRight={100}>[m
+             {(datos.results).map((info) => ([m
+               <Mostrar key={info.name} info={info} />[m
+             ))}[m
+           </SimpleGrid>[m
+ [m
+[31m-          <div>[m
+[31m-            <ButtonGroup spacing="2vw" className="contenedor-botones">[m
+[31m-              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-primera-pag2" leftIcon={<ArrowLeftIcon />}></Button>[m
+[31m-              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-anterior-pag2">Página Anterior</Button>[m
+[31m-              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-siguiente-pag2">Página siguiente</Button>[m
+[31m-              <Button className = "boton-avance" onClick={CambioPagina} id = "boton-ultima-pag2" rightIcon={<ArrowRightIcon />}></Button>[m
+[32m+[m
+[32m+[m[32m          <div className="contenedor-botones">[m
+[32m+[m[32m            <ButtonGroup spacing="5rem">[m
+[32m+[m[32m              <Button className = "boton-avance" onClick={PrimeraPag} leftIcon={<ArrowLeftIcon />}></Button>[m
+[32m+[m[32m              <Button className = "boton-avance" onClick={AnteriorPag}>Página Anterior</Button>[m
+[32m+[m[32m              <Button className = "boton-avance" onClick={SiguientePag}>Página siguiente</Button>[m
+[32m+[m[32m              <Button className = "boton-avance" onClick={UltimaPag} rightIcon={<ArrowRightIcon />}></Button>[m
+             </ButtonGroup>[m
+           </div>[m
+[31m-          <Script>[m
+[31m-              if ({datos.info.prev == null}) document.getElementById('boton-primera-pag').style.display = 'none';[m
+[31m-              if ({datos.info.prev == null}) document.getElementById('boton-anterior-pag').style.display = 'none';[m
+[31m-              if ({datos.info.next == null}) document.getElementById('boton-siguiente-pag').style.display = 'none';[m
+[31m-              if ({datos.info.next == null}) document.getElementById('boton-ultima-pag').style.display = 'none';[m
+[31m-[m
+[31m-              if ({datos.info.prev == null}) document.getElementById('boton-primera-pag2').style.display = 'none';[m
+[31m-              if ({datos.info.prev == null}) document.getElementById('boton-anterior-pag2').style.display = 'none';[m
+[31m-              if ({datos.info.next == null}) document.getElementById('boton-siguiente-pag2').style.display = 'none';[m
+[31m-              if ({datos.info.next == null}) document.getElementById('boton-ultima-pag2').style.display = 'none';[m
+[31m-          </Script>[m
+         </div>[m
+       )}[m
+     </div>[m
+[31m-  )[m
+[32m+[m[32m  );[m
+ }[m
+ [m
+ function Mostrar({ info }) {[m
+[36m@@ -128,23 +157,25 @@[m [mfunction Mostrar({ info }) {[m
+       <CardBody>[m
+         {info.name == "Rick Sanchez" ? ([m
+           <a href= "https://www.youtube.com/watch?v=x4LqqxYQhtQ">[m
+[31m-            <Image[m
+[31m-              priority[m
+[31m-              style={{ width: '100%', height: '100%' }}[m
+[31m-              src={info.image}[m
+[31m-              width={"100"}[m
+[31m-              height={"100"}[m
+[31m-            />[m
+[31m-          </a>[m
+[32m+[m[32m          <Image[m
+[32m+[m[32m          className="imagen"[m
+[32m+[m[32m          priority[m
+[32m+[m[32m          style={{ width: '100%', height: '100%' }}[m
+[32m+[m[32m          src={info.image}[m
+[32m+[m[32m          width={"100"}[m
+[32m+[m[32m          height={"100"}[m
+[32m+[m
+[32m+[m[32m        />[m
+[32m+[m[32m        </a>[m
+         ):([m
+           <Image[m
+[31m-            className="imagen-personaje"[m
+[31m-            priority[m
+[31m-            style={{ width: '100%', height: 'auto' }}[m
+[31m-            src={info.image}[m
+[31m-            width={"100"}[m
+[31m-            height={"100"}[m
+[31m-          />[m
+[32m+[m[32m          className="imagen"[m
+[32m+[m[32m          priority[m
+[32m+[m[32m          style={{ width: '100%', height: '100%' }}[m
+[32m+[m[32m          src={info.image}[m
+[32m+[m[32m          width={"100"}[m
+[32m+[m[32m          height={"100"}[m
+[32m+[m[32m        />[m
+         )}[m
+         [m
+       </CardBody>[m
+[36m@@ -159,31 +190,14 @@[m [mfunction DrawerInfo({ info }) {[m
+   const { isOpen, onOpen, onClose } = useDisclosure();[m
+   const btnRef = useRef();[m
+ [m
+[31m-  var fechaLiteral = info.created;[m
+[31m-  var fechaObjeto = new Date(fechaLiteral);[m
+[31m-[m
+[31m-  var ano = fechaObjeto.getFullYear();[m
+[31m-  var mes = fechaObjeto.getMonth() + 1;[m
+[31m-  var dia = fechaObjeto.getDate();[m
+[31m-[m
+[31m-  var fechaFormato = ano + '-' + refactorizar(mes) + '-' + refactorizar(dia);[m
+[31m-[m
+[31m-  function refactorizar(numero) {[m
+[31m-    if (numero < 10) {[m
+[31m-      return '0' + numero;[m
+[31m-    }[m
+[31m-    return numero;[m
+[31m-  }[m
+[31m-[m
+   return ([m
+     <>[m
+       <Button[m
+[31m-        className = "boton-info"[m
+[31m-        rightIcon={<ArrowForwardIcon/>}[m
+[32m+[m[32m        rightIcon={<ArrowForwardIcon />}[m
+         ref={btnRef}[m
+         colorScheme="teal"[m
+         onClick={onOpen}>[m
+[31m-        Más información[m
+[32m+[m[32m        Mas informacion[m
+       </Button>[m
+       <Drawer[m
+         isOpen={isOpen}[m
+[36m@@ -192,35 +206,34 @@[m [mfunction DrawerInfo({ info }) {[m
+         finalFocusRef={btnRef}[m
+         size={'lg'}[m
+       >[m
+[32m+[m[32m        <DrawerOverlay />[m
+         <DrawerContent className="carta">[m
+[31m-          <DrawerCloseButton/>[m
+[31m-          <DrawerHeader className="info-header">Información:</DrawerHeader>[m
+[31m-          <DrawerBody className="info">[m
+[31m-            <SimpleGrid columns={{base: 2}}>[m
+[31m-              <Image[m
+[31m-                className="imagen-personaje"[m
+[31m-                priority[m
+[31m-                style={{ width: '90%', height: 'auto' }}[m
+[31m-                src={info.image}[m
+[31m-                width={"100"}[m
+[31m-                height={"100"}[m
+[31m-              />[m
+[31m-              <p>[m
+[31m-                Nombre: {info.name} <br></br>[m
+[31m-                Estatus: {info.status} <br></br>[m
+[31m-                Especie: {info.species} <br></br>[m
+[31m-                Tipo: {info.type} <br></br>[m
+[31m-                Género: {info.gender} <br></br>[m
+[31m-                Orígen: {info.origin.name} <br></br>[m
+[31m-                Localización: {info.location.name} <br></br>[m
+[31m-                Creación: {fechaFormato} <br></br>[m
+[31m-                <></>[m
+[31m-              </p>[m
+[31m-            </SimpleGrid>[m
+[31m-            <CollapseEx info={info.episode}/>[m
+[32m+[m[32m          <DrawerCloseButton />[m
+[32m+[m[32m          <DrawerHeader>Información: </DrawerHeader>[m
+[32m+[m
+[32m+[m[32m          <DrawerBody className="carta"><p>[m
+[32m+[m[32m            {/* <Image[m
+[32m+[m[32m            className="imagen"[m
+[32m+[m[32m            priority[m
+[32m+[m[32m            style={{ width: '100%', height: '100%' }}[m
+[32m+[m[32m            src={info.image}[m
+[32m+[m[32m            width={"100"}[m
+[32m+[m[32m            height={"100"}[m
+[32m+[m[32m            /> */}[m
+[32m+[m[32m           Nombre: {info.name} <br></br>[m
+[32m+[m[32m           ID: {info.id} <br></br>[m
+[32m+[m[32m           Estatus: {info.status} <br></br>[m
+[32m+[m[32m           Especie: {info.species} <br></br>[m
+[32m+[m[32m           Tipo: {info.type} <br></br>[m
+[32m+[m[32m           Genero: {info.gender} <br></br>[m
+[32m+[m[32m           Origen: {info.origin.name} <br></br>[m
+[32m+[m[32m           Localizacion: {info.location.name} <br></br>[m
+[32m+[m[32m           Creado: {info.created} <br></br>[m
+[32m+[m[32m          </p>[m
+[32m+[m[32m          <CollapseEx info={info.episode}/>[m
+           </DrawerBody>[m
+           <DrawerFooter>[m
+[31m-            <Button className="boton-cerrar" variant="outline" mr={3} onClick={onClose}>[m
+[32m+[m[32m            <Button variant="outline" mr={3} onClick={onClose}>[m
+               Cerrar[m
+             </Button>[m
+           </DrawerFooter>[m
+[36m@@ -235,7 +248,7 @@[m [mfunction CollapseEx({info}) {[m
+ [m
+   return ([m
+     <>[m
+[31m-      <Button className="boton-cerrar" onClick={onToggle} marginTop={2} leftIcon={<ArrowDownIcon />} rightIcon={<ArrowDownIcon />}>Episodios</Button>[m
+[32m+[m[32m      <Button onClick={onToggle} marginTop={2}>Episodios</Button>[m
+       <Collapse in={isOpen} animateOpacity>[m
+         [m
+         <Box[m
+[36m@@ -244,13 +257,14 @@[m [mfunction CollapseEx({info}) {[m
+           mt='4'[m
+           bg='teal.500'[m
+           rounded='md'[m
+[32m+[m[32m          shadow='md'[m
+         >[m
+           <UnorderedList>[m
+[31m-            <Text as='b'>Episodio / Al aire / Nombre de episodio</Text>[m
+[31m-            <Text as='div'> <br /> </Text>{/* salto de linea */}[m
+[31m-            {info.map((informacion) =>([m
+[31m-              <MostrarEpisodios info={informacion}/>[m
+[31m-              ))}[m
+[32m+[m[32m          <Text as='b'>Episodio / Al aire   /   Nombre de episodio</Text>[m
+[32m+[m[32m          <Text as='div'> <br /> </Text>{/** salto de linea */}[m
+[32m+[m[32m          {info.map((informacion) =>([m
+[32m+[m[32m            <MostrarEpisodios info={informacion}/>[m
+[32m+[m[32m            ))}[m
+           </UnorderedList>[m
+         </Box>[m
+       </Collapse>[m
+[36m@@ -258,6 +272,49 @@[m [mfunction CollapseEx({info}) {[m
+   )[m
+ }[m
+ [m
+[32m+[m[32mfunction Modalf(){[m
+[32m+[m[32m  const { isOpen, onOpen, onClose } = useDisclosure();[m
+[32m+[m[32m  return([m
+[32m+[m[32m    <>[m
+[32m+[m[32m      <Button onClick={onOpen} className="boton-avance">Filtros</Button>[m
+[32m+[m
+[32m+[m[32m      <Modal isOpen={isOpen} onClose={onClose} size={'lg'}>[m
+[32m+[m[32m        <ModalOverlay />[m
+[32m+[m[32m        <ModalContent>[m
+[32m+[m[32m          <ModalHeader>Filtros</ModalHeader>[m
+[32m+[m[32m          <ModalCloseButton/>[m
+[32m+[m[32m          <ModalBody>[m
+[32m+[m[32m            Genero:[m
+[32m+[m[32m            <CheckboxGroup colorScheme='green'>[m
+[32m+[m[32m              <Stack spacing={[1, 4]} direction={['column', 'row']}>[m
+[32m+[m[32m                <Checkbox value='male'>Male</Checkbox>[m
+[32m+[m[32m                <Checkbox value='female'>Female</Checkbox>[m
+[32m+[m[32m                <Checkbox value='genderless'>Genderless</Checkbox>[m
+[32m+[m[32m                <Checkbox value='unknown'>Unknown</Checkbox>[m
+[32m+[m[32m              </Stack>[m
+[32m+[m[32m              Status:[m
+[32m+[m[32m            </CheckboxGroup>[m
+[32m+[m[32m            <CheckboxGroup colorScheme='green'>[m
+[32m+[m[32m              <Stack spacing={[1, 3]} direction={['column', 'row']}>[m
+[32m+[m[32m                <Checkbox value='alive'>Alive</Checkbox>[m
+[32m+[m[32m                <Checkbox value='dead'>Dead</Checkbox>[m
+[32m+[m[32m                <Checkbox value='unknown'>Unknown</Checkbox>[m
+[32m+[m[32m              </Stack>[m
+[32m+[m[32m            </CheckboxGroup>[m
+[32m+[m[32m          </ModalBody>[m
+[32m+[m
+[32m+[m[32m          <ModalFooter>[m
+[32m+[m[32m            <Button colorScheme="blue" mr={3} onClick={onClose}>[m
+[32m+[m[32m              Cerrar[m
+[32m+[m[32m            </Button>[m
+[32m+[m[32m            <Button>Aplicar</Button>[m
+[32m+[m[32m          </ModalFooter>[m
+[32m+[m[32m        </ModalContent>[m
+[32m+[m[32m      </Modal>[m
+[32m+[m[32m    </>[m
+[32m+[m[32m  )[m
+[32m+[m[32m}[m
+[32m+[m
+ function MostrarEpisodios({info}){[m
+   const [episodios, setEpisodios] = useState("");[m
+ [m
+[1mdiff --git a/public/background.svg b/public/background.svg[m
+[1mdeleted file mode 100644[m
+[1mindex 32c3d27..0000000[m
+[1m--- a/public/background.svg[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-<svg id="visual" viewBox="0 0 900 600" width="900" height="600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><rect x="0" y="0" width="900" height="600" fill="#263941"></rect><g fill="#ffffff"><path d="M0 -13.2L3 -4.1L12.6 -4.1L4.8 1.6L7.8 10.7L0 5L-7.8 10.7L-4.8 1.6L-12.6 -4.1L-3 -4.1Z" transform="translate(107 567)"></path><path d="M0 -0.9L0.2 -0.3L0.9 -0.3L0.3 0.1L0.6 0.8L0 0.4L-0.6 0.8L-0.3 0.1L-0.9 -0.3L-0.2 -0.3Z" transform="translate(60 370)"></path><path d="M0 -2.8L0.6 -0.9L2.7 -0.9L1 0.3L1.7 2.3L0 1.1L-1.7 2.3L-1 0.3L-2.7 -0.9L-0.6 -0.9Z" transform="translate(720 178)"></path><path d="M0 -1.9L0.4 -0.6L1.8 -0.6L0.7 0.2L1.1 1.5L0 0.7L-1.1 1.5L-0.7 0.2L-1.8 -0.6L-0.4 -0.6Z" transform="translate(446 409)"></path><path d="M0 -10.4L2.3 -3.2L9.9 -3.2L3.8 1.2L6.1 8.4L0 4L-6.1 8.4L-3.8 1.2L-9.9 -3.2L-2.3 -3.2Z" transform="translate(169 501)"></path><path d="M0 -3.8L0.8 -1.2L3.6 -1.2L1.4 0.4L2.2 3.1L0 1.4L-2.2 3.1L-1.4 0.4L-3.6 -1.2L-0.8 -1.2Z" transform="translate(651 492)"></path><path d="M0 -0.9L0.2 -0.3L0.9 -0.3L0.3 0.1L0.6 0.8L0 0.4L-0.6 0.8L-0.3 0.1L-0.9 -0.3L-0.2 -0.3Z" transform="translate(507 298)"></path><path d="M0 -9.4L2.1 -2.9L9 -2.9L3.4 1.1L5.5 7.6L0 3.6L-5.5 7.6L-3.4 1.1L-9 -2.9L-2.1 -2.9Z" transform="translate(51 189)"></path><path d="M0 -2.8L0.6 -0.9L2.7 -0.9L1 0.3L1.7 2.3L0 1.1L-1.7 2.3L-1 0.3L-2.7 -0.9L-0.6 -0.9Z" transform="translate(362 528)"></path><path d="M0 -10.4L2.3 -3.2L9.9 -3.2L3.8 1.2L6.1 8.4L0 4L-6.1 8.4L-3.8 1.2L-9.9 -3.2L-2.3 -3.2Z" transform="translate(447 161)"></path><path d="M0 -11.3L2.5 -3.5L10.8 -3.5L4.1 1.3L6.7 9.2L0 4.3L-6.7 9.2L-4.1 1.3L-10.8 -3.5L-2.5 -3.5Z" transform="translate(826 262)"></path><path d="M0 -5.7L1.3 -1.7L5.4 -1.7L2.1 0.7L3.3 4.6L0 2.2L-3.3 4.6L-2.1 0.7L-5.4 -1.7L-1.3 -1.7Z" transform="translate(204 136)"></path><path d="M0 -5.7L1.3 -1.7L5.4 -1.7L2.1 0.7L3.3 4.6L0 2.2L-3.3 4.6L-2.1 0.7L-5.4 -1.7L-1.3 -1.7Z" transform="translate(759 102)"></path><path d="M0 -7.6L1.7 -2.3L7.2 -2.3L2.7 0.9L4.4 6.1L0 2.9L-4.4 6.1L-2.7 0.9L-7.2 -2.3L-1.7 -2.3Z" transform="translate(415 490)"></path><path d="M0 -8.5L1.9 -2.6L8.1 -2.6L3.1 1L5 6.9L0 3.2L-5 6.9L-3.1 1L-8.1 -2.6L-1.9 -2.6Z" transform="translate(558 117)"></path><path d="M0 -5.7L1.3 -1.7L5.4 -1.7L2.1 0.7L3.3 4.6L0 2.2L-3.3 4.6L-2.1 0.7L-5.4 -1.7L-1.3 -1.7Z" transform="translate(736 326)"></path><path d="M0 -1.9L0.4 -0.6L1.8 -0.6L0.7 0.2L1.1 1.5L0 0.7L-1.1 1.5L-0.7 0.2L-1.8 -0.6L-0.4 -0.6Z" transform="translate(28 449)"></path><path d="M0 -8.5L1.9 -2.6L8.1 -2.6L3.1 1L5 6.9L0 3.2L-5 6.9L-3.1 1L-8.1 -2.6L-1.9 -2.6Z" transform="translate(311 440)"></path><path d="M0 -9.4L2.1 -2.9L9 -2.9L3.4 1.1L5.5 7.6L0 3.6L-5.5 7.6L-3.4 1.1L-9 -2.9L-2.1 -2.9Z" transform="translate(665 327)"></path><path d="M0 -1.9L0.4 -0.6L1.8 -0.6L0.7 0.2L1.1 1.5L0 0.7L-1.1 1.5L-0.7 0.2L-1.8 -0.6L-0.4 -0.6Z" transform="translate(155 56)"></path><path d="M0 -8.5L1.9 -2.6L8.1 -2.6L3.1 1L5 6.9L0 3.2L-5 6.9L-3.1 1L-8.1 -2.6L-1.9 -2.6Z" transform="translate(260 505)"></path><path d="M0 -3.8L0.8 -1.2L3.6 -1.2L1.4 0.4L2.2 3.1L0 1.4L-2.2 3.1L-1.4 0.4L-3.6 -1.2L-0.8 -1.2Z" transform="translate(745 274)"></path><path d="M0 -2.8L0.6 -0.9L2.7 -0.9L1 0.3L1.7 2.3L0 1.1L-1.7 2.3L-1 0.3L-2.7 -0.9L-0.6 -0.9Z" transform="translate(618 464)"></path><path d="M0 -6.6L1.5 -2L6.3 -2L2.4 0.8L3.9 5.3L0 2.5L-3.9 5.3L-2.4 0.8L-6.3 -2L-1.5 -2Z" transform="translate(473 522)"></path><path d="M0 -9.4L2.1 -2.9L9 -2.9L3.4 1.1L5.5 7.6L0 3.6L-5.5 7.6L-3.4 1.1L-9 -2.9L-2.1 -2.9Z" transform="translate(54 503)"></path><path d="M0 -11.3L2.5 -3.5L10.8 -3.5L4.1 1.3L6.7 9.2L0 4.3L-6.7 9.2L-4.1 1.3L-10.8 -3.5L-2.5 -3.5Z" transform="translate(522 448)"></path><path d="M0 -1.9L0.4 -0.6L1.8 -0.6L0.7 0.2L1.1 1.5L0 0.7L-1.1 1.5L-0.7 0.2L-1.8 -0.6L-0.4 -0.6Z" transform="translate(339 105)"></path><path d="M0 0L0 0L0 0L0 0L0 0L0 0L0 0L0 0L0 0L0 0Z" transform="translate(287 324)"></path><path d="M0 -11.3L2.5 -3.5L10.8 -3.5L4.1 1.3L6.7 9.2L0 4.3L-6.7 9.2L-4.1 1.3L-10.8 -3.5L-2.5 -3.5Z" transform="translate(266 364)"></path><path d="M0 -11.3L2.5 -3.5L10.8 -3.5L4.1 1.3L6.7 9.2L0 4.3L-6.7 9.2L-4.1 1.3L-10.8 -3.5L-2.5 -3.5Z" transform="translate(306 516)"></path><path d="M0 -4.7L1.1 -1.5L4.5 -1.5L1.7 0.6L2.8 3.8L0 1.8L-2.8 3.8L-1.7 0.6L-4.5 -1.5L-1.1 -1.5Z" transform="translate(812 73)"></path><path d="M0 -5.7L1.3 -1.7L5.4 -1.7L2.1 0.7L3.3 4.6L0 2.2L-3.3 4.6L-2.1 0.7L-5.4 -1.7L-1.3 -1.7Z" transform="translate(610 564)"></path><path d="M0 -11.3L2.5 -3.5L10.8 -3.5L4.1 1.3L6.7 9.2L0 4.3L-6.7 9.2L-4.1 1.3L-10.8 -3.5L-2.5 -3.5Z" transform="translate(414 559)"></path><path d="M0 -2.8L0.6 -0.9L2.7 -0.9L1 0.3L1.7 2.3L0 1.1L-1.7 2.3L-1 0.3L-2.7 -0.9L-0.6 -0.9Z" transform="translate(604 526)"></path><path d="M0 -6.6L1.5 -2L6.3 -2L2.4 0.8L3.9 5.3L0 2.5L-3.9 5.3L-2.4 0.8L-6.3 -2L-1.5 -2Z" transform="translate(141 507)"></path><path d="M0 -6.6L1.5 -2L6.3 -2L2.4 0.8L3.9 5.3L0 2.5L-3.9 5.3L-2.4 0.8L-6.3 -2L-1.5 -2Z" transform="translate(131 91)"></path><path d="M0 -1.9L0.4 -0.6L1.8 -0.6L0.7 0.2L1.1 1.5L0 0.7L-1.1 1.5L-0.7 0.2L-1.8 -0.6L-0.4 -0.6Z" transform="translate(251 283)"></path><path d="M0 -8.5L1.9 -2.6L8.1 -2.6L3.1 1L5 6.9L0 3.2L-5 6.9L-3.1 1L-8.1 -2.6L-1.9 -2.6Z" transform="translate(242 218)"></path><path d="M0 -9.4L2.1 -2.9L9 -2.9L3.4 1.1L5.5 7.6L0 3.6L-5.5 7.6L-3.4 1.1L-9 -2.9L-2.1 -2.9Z" transform="translate(630 254)"></path><path d="M0 -3.8L0.8 -1.2L3.6 -1.2L1.4 0.4L2.2 3.1L0 1.4L-2.2 3.1L-1.4 0.4L-3.6 -1.2L-0.8 -1.2Z" transform="translate(353 62)"></path><path d="M0 -5.7L1.3 -1.7L5.4 -1.7L2.1 0.7L3.3 4.6L0 2.2L-3.3 4.6L-2.1 0.7L-5.4 -1.7L-1.3 -1.7Z" transform="translate(454 495)"></path><path d="M0 -0.9L0.2 -0.3L0.9 -0.3L0.3 0.1L0.6 0.8L0 0.4L-0.6 0.8L-0.3 0.1L-0.9 -0.3L-0.2 -0.3Z" transform="translate(519 403)"></path><path d="M0 -10.4L2.3 -3.2L9.9 -3.2L3.8 1.2L6.1 8.4L0 4L-6.1 8.4L-3.8 1.2L-9.9 -3.2L-2.3 -3.2Z" transform="translate(161 282)"></path><path d="M0 -7.6L1.7 -2.3L7.2 -2.3L2.7 0.9L4.4 6.1L0 2.9L-4.4 6.1L-2.7 0.9L-7.2 -2.3L-1.7 -2.3Z" transform="translate(158 549)"></path><path d="M0 -7.6L1.7 -2.3L7.2 -2.3L2.7 0.9L4.4 6.1L0 2.9L-4.4 6.1L-2.7 0.9L-7.2 -2.3L-1.7 -2.3Z" transform="translate(778 516)"></path><path d="M0 -6.6L1.5 -2L6.3 -2L2.4 0.8L3.9 5.3L0 2.5L-3.9 5.3L-2.4 0.8L-6.3 -2L-1.5 -2Z" transform="translate(583 579)"></path><path d="M0 -4.7L1.1 -1.5L4.5 -1.5L1.7 0.6L2.8 3.8L0 1.8L-2.8 3.8L-1.7 0.6L-4.5 -1.5L-1.1 -1.5Z" transform="translate(210 67)"></path><path d="M0 -5.7L1.3 -1.7L5.4 -1.7L2.1 0.7L3.3 4.6L0 2.2L-3.3 4.6L-2.1 0.7L-5.4 -1.7L-1.3 -1.7Z" transform="translate(522 364)"></path><path d="M0 -5.7L1.3 -1.7L5.4 -1.7L2.1 0.7L3.3 4.6L0 2.2L-3.3 4.6L-2.1 0.7L-5.4 -1.7L-1.3 -1.7Z" transform="translate(316 158)"></path><path d="M0 -8.5L1.9 -2.6L8.1 -2.6L3.1 1L5 6.9L0 3.2L-5 6.9L-3.1 1L-8.1 -2.6L-1.9 -2.6Z" transform="translate(195 263)"></path><path d="M0 -3.8L0.8 -1.2L3.6 -1.2L1.4 0.4L2.2 3.1L0 1.4L-2.2 3.1L-1.4 0.4L-3.6 -1.2L-0.8 -1.2Z" transform="translate(280 291)"></path><path d="M0 -10.4L2.3 -3.2L9.9 -3.2L3.8 1.2L6.1 8.4L0 4L-6.1 8.4L-3.8 1.2L-9.9 -3.2L-2.3 -3.2Z" transform="translate(671 57)"></path><path d="M0 -5.7L1.3 -1.7L5.4 -1.7L2.1 0.7L3.3 4.6L0 2.2L-3.3 4.6L-2.1 0.7L-5.4 -1.7L-1.3 -1.7Z" transform="translate(666 181)"></path><path d="M0 -7.6L1.7 -2.3L7.2 -2.3L2.7 0.9L4.4 6.1L0 2.9L-4.4 6.1L-2.7 0.9L-7.2 -2.3L-1.7 -2.3Z" transform="translate(343 459)"></path><path d="M0 -5.7L1.3 -1.7L5.4 -1.7L2.1 0.7L3.3 4.6L0 2.2L-3.3 4.6L-2.1 0.7L-5.4 -1.7L-1.3 -1.7Z" transform="translate(695 562)"></path><path d="M0 -6.6L1.5 -2L6.3 -2L2.4 0.8L3.9 5.3L0 2.5L-3.9 5.3L-2.4 0.8L-6.3 -2L-1.5 -2Z" transform="translate(548 395)"></path><path d="M0 -7.6L1.7 -2.3L7.2 -2.3L2.7 0.9L4.4 6.1L0 2.9L-4.4 6.1L-2.7 0.9L-7.2 -2.3L-1.7 -2.3Z" transform="translate(520 517)"></path><path d="M0 -2.8L0.6 -0.9L2.7 -0.9L1 0.3L1.7 2.3L0 1.1L-1.7 2.3L-1 0.3L-2.7 -0.9L-0.6 -0.9Z" transform="translate(698 361)"></path><path d="M0 -4.7L1.1 -1.5L4.5 -1.5L1.7 0.6L2.8 3.8L0 1.8L-2.8 3.8L-1.7 0.6L-4.5 -1.5L-1.1 -1.5Z" transform="translate(130 330)"></path></g></svg>[m
+\ No newline at end of file[m
