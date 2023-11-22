@@ -21,7 +21,6 @@ import {
 } from "@chakra-ui/icons";
 
 function DrawerInfo({ info }) {
-  const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useLocalStorage("likes", ["0", false]);
   
   const { isOpen, onOpen, onClose } = useDisclosure();
