@@ -1,0 +1,25 @@
+
+.grilla-cartas {
+  --spacing-x: 25px;
+  --spacing-y: 20px;
+  margin-left: 25px;
+}
+
+.grilla-cartas > * {
+  margin-right: var(--spacing-x);
+  margin-bottom: var(--spacing-y);
+}
+
+@media (min-width: 992px) {
+  .carta {
+    background-color: rgb(188, 214, 47);
+    font-family: myFirstFont;
+    font-size: 2vw;
+  }
+
+  .grilla-cartas {
+    --spacing-x: 50px;
+    --spacing-y: 20px;
+    margin-left: 50px;
+  }
+}

@@ -11,77 +11,6 @@ body{
   margin: 15px auto;
 }
 
-.contenedor-botones{
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.grilla-cartas {
-  --spacing-x: 25px;
-  --spacing-y: 20px;
-  margin-left: 25px;
-}
-
-.grilla-cartas > * {
-  margin-right: var(--spacing-x);
-  margin-bottom: var(--spacing-y);
-}
-
-.carta {
-  background-color: rgb(188, 214, 47);
-  font-family: myFirstFont;
-  font-size: 5vw;
-}
-
-.info-header {
-  background-color: rgb(71,179,201);
-  color: white;
-  font-size: 90%;
-  font-family: myFirstFont;
-}
-
-.info {
-  background-color: rgb(188, 214, 47);
-  font-family: myFirstFont;
-  font-size: 64%;
-}
-
-.boton-info{
-  font-size: 3.2vw;
-  width: 100%;
-}
-
-.boton-episodios{
-  background-color: rgb(49,151,149);
-  color: white;
-  width: 100%;
-  &:hover {
-    background-color: rgb(44,122,123);
-  }
-}
-
-.boton-filtro{
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.boton-avance{
-  background-color: rgb(71,179,201);
-  color: white;
-  font-size: 3.1vw;
-  width: auto;
-  font-family: myFirstFont;
-}
-
-.boton-cerrar{
-  background-color: white;
-  color: black;
-  width: 100%;
-}
-
 .center {
   display: flex;
   justify-content: center;
@@ -105,51 +34,8 @@ body{
 }
 
 @media (min-width: 992px) {
-  .carta {
-    background-color: rgb(188, 214, 47);
-    font-family: myFirstFont;
-    font-size: 2vw;
-  }
-
-  .boton-info{
-    font-size: 1.3vw;
-    width: 100%;
-  }
-
-  .grilla-cartas {
-    --spacing-x: 50px;
-    --spacing-y: 20px;
-    margin-left: 50px;
-  }
-
-  .boton-avance{
-    background-color: rgb(71,179,201);
-    font-size: 1.8vw;
-    width: auto;
-    font-family: myFirstFont;
-
-    &:hover {
-      background-color: rgb(59, 146, 164);
-    }
-  }
-  
   .logo {
     width: 60%;
     margin: 15px auto;
-  }
-}
-
-@media (min-width: 672px) {
-  .info {
-    background-color: rgb(188, 214, 47);
-    font-family: myFirstFont;
-    font-size: 3.5vh;
-  }
-
-  .info-header {
-    background-color: rgb(71,179,201);
-    color: white;
-    font-size: 4.9vh;
-    font-family: myFirstFont;
   }
 }

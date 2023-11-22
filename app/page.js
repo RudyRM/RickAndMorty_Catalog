@@ -17,7 +17,6 @@ import {
   DrawerBody,
   DrawerFooter,
   DrawerHeader,
-  DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
@@ -41,6 +40,11 @@ import {
   ArrowDownIcon
 } from "@chakra-ui/icons";
 
+// Importe diseño
+import './botones.css'
+import './cartas.css'
+import './grilla.css'
+
 import { useState, useEffect } from "react";
 import Script from "next/script";
 
@@ -48,8 +52,6 @@ export default function Main() {
   const [pagina, setPagina] = useState("https://rickandmortyapi.com/api/character");
   const [datos, setDatos] = useState({});
   const [loading, setLoading] = useState(true);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -75,6 +77,7 @@ export default function Main() {
       setPagina(datos.info.next);
     else if(boton.id.includes('boton-anterior-pag'))
       setPagina(datos.info.prev);
+
   }
 
   return (
@@ -172,8 +175,7 @@ function DrawerInfo({ info }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
 
-  var fechaLiteral = info.created;
-  var fechaObjeto = new Date(fechaLiteral);
+  var fechaObjeto = new Date(info.created);
 
   var ano = fechaObjeto.getFullYear();
   var mes = fechaObjeto.getMonth() + 1;
@@ -182,9 +184,8 @@ function DrawerInfo({ info }) {
   var fechaFormato = ano + '-' + refactorizar(mes) + '-' + refactorizar(dia);
 
   function refactorizar(numero) {
-    if (numero < 10) {
+    if (numero < 10)
       return '0' + numero;
-    }
     return numero;
   }
 
