@@ -1,10 +1,13 @@
 "use client";
+
+// Importe Elementos Next
 import Image from "next/image";
 import Script from "next/script";
 
-import { useRef } from "react";
-import { useState, useEffect } from "react";
+// Importe Funciones React
+import { useRef, useEffect, useState } from "react";
 
+// Importe Elementos Chakra
 import {
   Card,
   CardBody,
@@ -20,7 +23,6 @@ import {
   Drawer,
   DrawerBody,
   DrawerContent,
-  DrawerCloseButton,
   DrawerFooter,
   DrawerHeader,
   ListItem,
@@ -38,6 +40,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
+// Importe Iconos Chakra
 import {
   ArrowDownIcon,
   ArrowForwardIcon,
@@ -46,6 +49,7 @@ import {
 } from "@chakra-ui/icons";
 
 export default function Main() {
+  // useState cambia los valores de las variables en tiempo de ejecución
   const [pagina, setPagina] = useState("https://rickandmortyapi.com/api/character");
   const [datos, setDatos] = useState({});
   const [loading, setLoading] = useState(true);
@@ -92,7 +96,7 @@ export default function Main() {
             <img src={"/rm_logo.png"}/>
           </div>
           <div className="boton-filtro">
-            <Modalf/>
+            <ModalFiltros/>
           </div>
           <div className="contenedor-botones">
             <ButtonGroup spacing="2vw">
@@ -149,14 +153,15 @@ function Mostrar({ info }) {
         />
       </CardBody>
       <CardFooter>
-        <DrawerInfo info={info} />
+        <InformacionDrawer info={info} />
       </CardFooter>
     </Card>
   );
 }
 
-function DrawerInfo({ info }) {
+function InformacionDrawer({ info }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  // Guarda la referencia del botón para volver a activarlo
   const btnRef = useRef();
 
   var fechaObjeto = new Date(info.created);
@@ -214,7 +219,7 @@ function DrawerInfo({ info }) {
                 <></>
               </p>
             </SimpleGrid>
-            <CollapseEx info={info.episode}/>
+            <DespliegueEpisodios info={info.episode}/>
           </DrawerBody>
           <DrawerFooter>
             <Button className="boton-cerrar" variant="outline" mr={3} onClick={onClose}>
@@ -227,14 +232,13 @@ function DrawerInfo({ info }) {
   );
 }
 
-function CollapseEx({info}) {
+function DespliegueEpisodios({info}) {
   const { isOpen, onToggle } = useDisclosure()
 
   return (
     <>
       <Button className="boton-episodios" onClick={onToggle} marginTop={2} leftIcon={<ArrowDownIcon />} rightIcon={<ArrowDownIcon />}>Episodios</Button>
       <Collapse in={isOpen} animateOpacity>
-        
         <Box
           p='40px'
           color='white'
@@ -255,7 +259,7 @@ function CollapseEx({info}) {
   )
 }
 
-function Modalf(){
+function ModalFiltros(){
   const { isOpen, onOpen, onClose } = useDisclosure();
   return(
     <>
@@ -301,7 +305,9 @@ function Modalf(){
 function MostrarEpisodios({info}){
   const [episodios, setEpisodios] = useState("");
 
-  useEffect(() => {
+  // useEffect se ejecuta cada vez que el valor de episodios cambie
+  useEffect(() => { 
+    // Que la función sea async permite utilizar await
     const CambioEpisodios = async () => {
       const response = await fetch(info, { method: "GET" });
       const data = await response.json();
