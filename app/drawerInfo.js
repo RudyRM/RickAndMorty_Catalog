@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { CollapseEx } from "./collapseInfo";
 import { useLocalStorage } from "./useLocalStorage";
 
@@ -21,19 +21,75 @@ import {
 } from "@chakra-ui/icons";
 
 function DrawerInfo({ info }) {
-  const [likes, setLikes] = useLocalStorage("likes", ["0", false]);
+  const [datos, setDatos] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("/api/get");
+      const data = await response.json();
+      setDatos(data);
+    };
+    fetchData();
+  }, []);
+
+  const sendRequest = async () => {
+    const response = await fetch("/api/ejemplo-4", {
+      method: "POST",
+      body: JSON.stringify({
+        usuario: " ",
+        idApp: "ram",
+        idItem: info.name,
+        comentario: comentario,
+        timestamp: Date.now(),
+        enRespuestaA: enRespuestaA === "" ? null : enRespuestaA,
+      }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+  };
   
   const { isOpen, onOpen, onClose } = useDisclosure();
+  
   const btnRef = useRef();
+  
+  const handleLikedClick = () =>{
+    const [nombre, setNombre] = useState([]);
+    const [comentario, setComentario] = useState("0");
 
-  const handleLikedClick = () => {
+    const fetchData = async () => {
+      // Query : idItem
+      const response = await fetch("/api/searchIdItem?idApp=" + info.name);
+      const data = await response.json();
+      console.log(data);
+      setNombre(data);
+    };
+    fetchData();
+    if(nombre.length == 0){
+      sendRequest();
+
+    }else{
+
+    }
+
+    const [likes, setLikes] = useLocalStorage(info.name, [comentario, false]);
     let aux;
+    
     if(likes[1]){
       aux = Number(likes[0]) - 1;
     }else{
       aux = Number(likes[0]) + 1;
     }
     setLikes([aux, !likes[1]]);
+
+    return(
+      <Button
+        colorScheme={likes[1] ? "teal" : "gray"}
+        onClick={handleLikedClick}>
+          Like
+      </Button>
+    )
+    
   }
 
   return (
@@ -46,10 +102,8 @@ function DrawerInfo({ info }) {
         Mas informacion
       </Button>
 
-      <Button
-        colorScheme={likes[1] ? "teal" : "gray"}
-        onClick={handleLikedClick}>
-          Likes
+      <Button onClick={handleLikedClick}>
+        likes
       </Button>
 
       <Drawer
