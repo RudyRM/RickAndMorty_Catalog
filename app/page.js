@@ -1,52 +1,49 @@
 "use client";
 import Image from "next/image";
+import Script from "next/script";
+
 import { useRef } from "react";
+import { useState, useEffect } from "react";
+
 import {
-  UnorderedList,
   Card,
-  CardHeader,
   CardBody,
-  CircularProgress,
+  CardHeader,
   CardFooter,
   Checkbox,
   CheckboxGroup,
+  CircularProgress,
+  Collapse,
   Button,
   ButtonGroup,
   Box,
   Drawer,
   DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
   DrawerContent,
   DrawerCloseButton,
-  useDisclosure,
+  DrawerFooter,
+  DrawerHeader,
+  ListItem,
   Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   SimpleGrid,
   Stack,
-  Collapse,
-  ListItem,
   Text,
+  UnorderedList,
+  useDisclosure,
 } from "@chakra-ui/react";
+
 import {
+  ArrowDownIcon,
   ArrowForwardIcon,
-  ArrowRightIcon,
   ArrowLeftIcon,
-  ArrowDownIcon
+  ArrowRightIcon,
 } from "@chakra-ui/icons";
-
-// Importe diseño
-import './botones.css'
-import './cartas.css'
-import './grilla.css'
-
-import { useState, useEffect } from "react";
-import Script from "next/script";
 
 export default function Main() {
   const [pagina, setPagina] = useState("https://rickandmortyapi.com/api/character");
@@ -110,7 +107,6 @@ export default function Main() {
               <Mostrar key={info.name} info={info} />
             ))}
           </SimpleGrid>
-
           <div>
             <ButtonGroup spacing="2vw" className="contenedor-botones">
               <Button className = "boton-avance" onClick={CambioPagina} id = "boton-primera-pag2" leftIcon={<ArrowLeftIcon />}></Button>
@@ -142,27 +138,15 @@ function Mostrar({ info }) {
     <Card className="carta" mb={2} size= "sm">
       <CardHeader>{info.name}</CardHeader>
       <CardBody>
-        {info.name == "Rick Sanchez" ? (
-          <a href= "https://www.youtube.com/watch?v=x4LqqxYQhtQ">
-            <Image
-              priority
-              style={{ width: '100%', height: '100%' }}
-              src={info.image}
-              width={"100"}
-              height={"100"}
-            />
-          </a>
-        ):(
-          <Image
-            className="imagen-personaje"
-            priority
-            style={{ width: '100%', height: 'auto', borderRadius: '4%'}}
-            src={info.image}
-            width={"100"}
-            height={"100"}
-          />
-        )}
-        
+        <Image
+          className="imagen-personaje"
+          href={info.name == "Rick Sanchez" ? "" : "https://www.youtube.com/watch?v=x4LqqxYQhtQ"}
+          priority
+          style={{ width: '100%', height: 'auto', borderRadius: '4%'}}
+          src={info.image}
+          width={"100"}
+          height={"100"}
+        />
       </CardBody>
       <CardFooter>
         <DrawerInfo info={info} />
@@ -207,7 +191,6 @@ function DrawerInfo({ info }) {
         size={'lg'}
       >
         <DrawerContent className="carta">
-          <DrawerCloseButton/>
           <DrawerHeader className="info-header">Información:</DrawerHeader>
           <DrawerBody className="info">
             <SimpleGrid columns={{base: 2}}>
