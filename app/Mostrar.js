@@ -1,47 +1,41 @@
 "use client"
+// Importe Elementos Chakra
+import Image from "next/image";
 
-import { DrawerInfo } from "./drawerInfo";
-
+// Importe Elementos Chakra
 import {
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
-  Image,
+  CardFooter,
 } from "@chakra-ui/react";
 
+import { InformacionDrawer } from "./InformacionDrawer";
+
 function Mostrar({ info }) {
-    return (
-      <Card className="carta" mb={2} size= "sm">
-        <CardHeader>{info.name}</CardHeader>
-        <CardBody>
-          {info.name == "Rick Sanchez" ? (
-            <a href= "https://www.youtube.com/watch?v=x4LqqxYQhtQ">
-            <Image
-            className="imagen"
-            priority
-            style={{ width: '100%', height: '100%' }}
-            src={info.image}
-            width={"100"}
-            height={"100"}
-          />
-          </a>
-          ):(
-            <Image
-            className="imagen"
-            priority
-            style={{ width: '100%', height: '100%' }}
-            src={info.image}
-            width={"100"}
-            height={"100"}
-          />
-          )}
-          
-        </CardBody>
-        <CardFooter>
-          <DrawerInfo info={info} />
-        </CardFooter>
-      </Card>
-    );
-  }
-  export {Mostrar};
+  return (
+    <Card className="carta" mb={2} size="sm">
+      <CardHeader>{info.name}</CardHeader>
+      <CardBody>
+        <Image
+          alt="foto-carta"
+          className="imagen-personaje"
+          href={
+            info.name == "Rick Sanchez"
+              ? ""
+              : "https://www.youtube.com/watch?v=x4LqqxYQhtQ"
+          }
+          priority
+          style={{ width: "100%", height: "auto", borderRadius: "4%" }}
+          src={info.image}
+          width={"100"}
+          height={"100"}
+        />
+      </CardBody>
+      <CardFooter>
+        <InformacionDrawer info={info} />
+      </CardFooter>
+    </Card>
+  );
+}
+export { Mostrar };

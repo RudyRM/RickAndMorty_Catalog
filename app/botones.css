@@ -1,0 +1,59 @@
+.contenedor-botones{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.boton-info{
+  font-size: 3.2vw;
+  width: 100%;
+}
+
+.boton-episodios{
+  background-color: rgb(49,151,149);
+  color: white;
+  width: 100%;
+  &:hover {
+    background-color: rgb(44,122,123);
+  }
+}
+
+.boton-filtro{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.boton-avance{
+  background-color: rgb(71,179,201);
+  color: white;
+  font-size: 3.1vw;
+  width: auto;
+  font-family: myFirstFont;
+}
+
+.boton-cerrar{
+  background-color: white;
+  color: black;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+
+  .boton-info{
+    font-size: 1.3vw;
+    width: 100%;
+  }
+
+  .boton-avance{
+    background-color: rgb(71,179,201);
+    font-size: 1.8vw;
+    width: auto;
+    font-family: myFirstFont;
+
+    &:hover {
+      background-color: rgb(59, 146, 164);
+    }
+  }
+}

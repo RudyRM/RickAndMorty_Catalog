@@ -1,0 +1,33 @@
+.carta {
+  background-color: rgb(188, 214, 47);
+  font-family: myFirstFont;
+  font-size: 5vw;
+}
+
+.info-header {
+  background-color: rgb(71,179,201);
+  color: white;
+  font-size: 90%;
+  font-family: myFirstFont;
+}
+
+.info {
+  background-color: rgb(188, 214, 47);
+  font-family: myFirstFont;
+  font-size: 64%;
+}
+
+@media (min-width: 672px) {
+  .info {
+    background-color: rgb(188, 214, 47);
+    font-family: myFirstFont;
+    font-size: 3.5vh;
+  }
+
+  .info-header {
+    background-color: rgb(71,179,201);
+    color: white;
+    font-size: 4.9vh;
+    font-family: myFirstFont;
+  }
+}

@@ -1,28 +1,31 @@
 "use client";
 
 import { useRef, useState, useEffect, React } from "react";
-import { CollapseEx } from "./collapseInfo";
+import { DespliegueEpisodios } from "./DespliegueEpisodios";
 import { useLocalStorage } from "./useLocalStorage";
 import { actualizarComentario } from "./api/patch/route";
 
+import Image from "next/image";
 
+
+// Importe Elementos Chakra
 import {
   Button,
   Drawer,
   DrawerBody,
+  DrawerContent,
   DrawerFooter,
   DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
+  SimpleGrid,
   useDisclosure,
 } from "@chakra-ui/react";
 
+// Importe Iconos Chakra
 import {
   ArrowForwardIcon,
 } from "@chakra-ui/icons";
 
-function DrawerInfo({ info }) {
+function InformacionDrawer({ info }) {
   const [aux, setAux] = useState(0);
   const [datos, setDatos] = useState({});
   const [id, setId] = useState("");
@@ -31,6 +34,19 @@ function DrawerInfo({ info }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const btnRef = useRef();
+
+  var fechaObjeto = new Date(info.created);
+
+  var ano = fechaObjeto.getFullYear();
+  var mes = fechaObjeto.getMonth() + 1;
+  var dia = fechaObjeto.getDate();
+
+  var fechaFormato = ano + "-" + refactorizar(mes) + "-" + refactorizar(dia);
+
+  function refactorizar(numero) {
+    if (numero < 10) return "0" + numero;
+    return numero;
+  }
 
   const sendRequest = async ({ nuevoComentario }) => {
     const response = await fetch("/api/post", {
@@ -75,7 +91,7 @@ function DrawerInfo({ info }) {
       setId(nombre[0]._id);
       setLikes([nombre[0].comentario, false, nombre[0]._id]);
       setAux(Number(nombre[0].comentario));
-      console.log("entro al if del fetch data "+ nombre[0]._id);
+      console.log("entro al if del fetch data " + nombre[0]._id);
     }
   }, []);
 
@@ -107,11 +123,13 @@ function DrawerInfo({ info }) {
   return (
     <>
       <Button
+        className="boton-info"
         rightIcon={<ArrowForwardIcon />}
         ref={btnRef}
         colorScheme="teal"
-        onClick={onOpen}>
-        Mas informacion
+        onClick={onOpen}
+      >
+        Más información
       </Button>
 
       <Button onClick={handleLikedClick} colorScheme={likes[1] ? "teal" : "gray"}>
@@ -124,36 +142,42 @@ function DrawerInfo({ info }) {
         placement="right"
         onClose={onClose}
         finalFocusRef={btnRef}
-        size={'lg'}
+        size={"lg"}
       >
-        <DrawerOverlay />
         <DrawerContent className="carta">
-          <DrawerCloseButton />
-          <DrawerHeader>Información: </DrawerHeader>
-
-          <DrawerBody className="carta"><p>
-            {/* <Image
-              className="imagen"
-              priority
-              style={{ width: '100%', height: '100%' }}
-              src={info.image}
-              width={"100"}
-              height={"100"}
-              /> */}
-            Nombre: {info.name} <br></br>
-            ID: {info.id} <br></br>
-            Estatus: {info.status} <br></br>
-            Especie: {info.species} <br></br>
-            Tipo: {info.type} <br></br>
-            Genero: {info.gender} <br></br>
-            Origen: {info.origin.name} <br></br>
-            Localizacion: {info.location.name} <br></br>
-            Creado: {info.created} <br></br>
-          </p>
-            <CollapseEx info={info.episode} />
+          <DrawerHeader className="info-header">Información:</DrawerHeader>
+          <DrawerBody className="info">
+            <SimpleGrid columns={{ base: 2 }}>
+              <Image
+                alt="foto-info"
+                className="imagen-personaje"
+                priority
+                style={{ width: "90%", height: "auto", borderRadius: "4%" }}
+                src={info.image}
+                width={"100"}
+                height={"100"}
+              />
+              <p>
+                Nombre: {info.name} <br></br>
+                Estatus: {info.status} <br></br>
+                Especie: {info.species} <br></br>
+                Tipo: {info.type} <br></br>
+                Género: {info.gender} <br></br>
+                Orígen: {info.origin.name} <br></br>
+                Localización: {info.location.name} <br></br>
+                Creación: {fechaFormato} <br></br>
+                <></>
+              </p>
+            </SimpleGrid>
+            <DespliegueEpisodios info={info.episode} />
           </DrawerBody>
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
+            <Button
+              className="boton-cerrar"
+              variant="outline"
+              mr={3}
+              onClick={onClose}
+            >
               Cerrar
             </Button>
           </DrawerFooter>
@@ -162,4 +186,4 @@ function DrawerInfo({ info }) {
     </>
   );
 }
-export { DrawerInfo }
+export { InformacionDrawer }
