@@ -13,8 +13,6 @@ import {
   CardBody,
   CardHeader,
   CardFooter,
-  Checkbox,
-  CheckboxGroup,
   CircularProgress,
   Collapse,
   Button,
@@ -25,6 +23,7 @@ import {
   DrawerContent,
   DrawerFooter,
   DrawerHeader,
+  Input,
   ListItem,
   Modal,
   ModalBody,
@@ -33,10 +32,12 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Select,
+  selectProps,
   SimpleGrid,
-  Stack,
   Text,
   UnorderedList,
+  useChakraSelectProps,
   useDisclosure,
 } from "@chakra-ui/react";
 
@@ -334,6 +335,14 @@ function DespliegueEpisodios({ info }) {
 
 function ModalFiltros() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const CustomSelect = () => {
+    const[selectedOptions, setSelectedOptions] = useState([]);
+
+    const selectProps = useChakraSelectProps({
+      value: selectedOptions,
+      onChange: setSelectedOptions,
+    });
+  }
   return (
     <>
       <Button onClick={onOpen} className="boton-avance">
@@ -346,23 +355,21 @@ function ModalFiltros() {
           <ModalHeader>Filtros</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
+            Nombre:
+              <Input placeholder='Escribir Nombre'></Input>
             Genero:
-            <CheckboxGroup colorScheme="green">
-              <Stack spacing={[1, 4]} direction={["column", "row"]}>
-                <Checkbox value="male">Male</Checkbox>
-                <Checkbox value="female">Female</Checkbox>
-                <Checkbox value="genderless">Genderless</Checkbox>
-                <Checkbox value="unknown">Unknown</Checkbox>
-              </Stack>
-              Status:
-            </CheckboxGroup>
-            <CheckboxGroup colorScheme="green">
-              <Stack spacing={[1, 3]} direction={["column", "row"]}>
-                <Checkbox value="alive">Alive</Checkbox>
-                <Checkbox value="dead">Dead</Checkbox>
-                <Checkbox value="unknown">Unknown</Checkbox>
-              </Stack>
-            </CheckboxGroup>
+              <Select placeholder='Elegir opcion' {...selectProps}>
+                <option value='female'>Mujer</option>
+                <option value='male'>Hombre</option>
+                <option value='genderless'>Sin Genero</option>
+                <option value='unknown'>Desconocido</option>
+              </Select>
+            Status:
+              <Select placeholder='Elegir opcion' {...selectProps}>
+                <option value='alive'>Vivo</option>
+                <option value='dead'>Muerto</option>
+                <option value='unknown'>Desconocido</option>
+                </Select>
           </ModalBody>
 
           <ModalFooter>
