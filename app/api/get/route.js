@@ -9,6 +9,6 @@ export async function GET() {
   // const response = await fetch(API_URL + "/api/comentarios", { next: { revalidate: 10 } });
   const response = await fetch(API_URL + "/api/comentarios?idItem=ram", { cache: "no-cache" });
   const data = await response.json();
-  console.log(data);
+  console.log("data de get carpeta " + data);
   return NextResponse.json(data);
 }

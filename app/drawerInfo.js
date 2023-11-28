@@ -1,8 +1,10 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, React } from "react";
 import { CollapseEx } from "./collapseInfo";
 import { useLocalStorage } from "./useLocalStorage";
+import { actualizarComentario } from "./api/patch/route";
+
 
 import {
   Button,
@@ -21,75 +23,85 @@ import {
 } from "@chakra-ui/icons";
 
 function DrawerInfo({ info }) {
+  const [aux, setAux] = useState(0);
   const [datos, setDatos] = useState({});
+  const [id, setId] = useState("");
+  const [nombre, setNombre] = useState([]);
+  const [likes, setLikes] = useLocalStorage(info.name, ["0", false, ""]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("/api/get");
-      const data = await response.json();
-      setDatos(data);
-    };
-    fetchData();
-  }, []);
+  const btnRef = useRef();
 
-  const sendRequest = async () => {
-    const response = await fetch("/api/ejemplo-4", {
+  const sendRequest = async ({ nuevoComentario }) => {
+    const response = await fetch("/api/post", {
       method: "POST",
       body: JSON.stringify({
         usuario: " ",
         idApp: "ram",
         idItem: info.name,
-        comentario: comentario,
+        comentario: nuevoComentario,
         timestamp: Date.now(),
-        enRespuestaA: enRespuestaA === "" ? null : enRespuestaA,
+        enRespuestaA: null,
       }),
     });
+    const data = await response.json();
+    console.log("se posteo " + data._id);
+    setId(data._id);
+  };
 
+  const sendDeleteAction = async () => {
+    const response = await fetch(`/api/ejemplo-5/${id}`, {
+      method: "DELETE",
+    });
+    console.log(response);
     const data = await response.json();
     console.log(data);
+    setComentario(data);
   };
-  
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  
-  const btnRef = useRef();
-  
-  const handleLikedClick = () =>{
-    const [nombre, setNombre] = useState([]);
-    const [comentario, setComentario] = useState("0");
 
+
+
+  useEffect(() => {
     const fetchData = async () => {
       // Query : idItem
-      const response = await fetch("/api/searchIdItem?idApp=" + info.name);
+      const response = await fetch("/api/searchIdItem?idItem=" + info.name);
       const data = await response.json();
-      console.log(data);
+
       setNombre(data);
     };
     fetchData();
-    if(nombre.length == 0){
-      sendRequest();
+    console.log("entra al useEffect");
+    if (nombre.length != 0) {
+      setId(nombre[0]._id);
+      setLikes([nombre[0].comentario, false, nombre[0]._id]);
+      setAux(Number(nombre[0].comentario));
+      console.log("entro al if del fetch data "+ nombre[0]._id);
+    }
+  }, []);
 
-    }else{
 
+
+  const handleLikedClick = async () => {
+    console.log("aux " + aux);
+    const nuevoAux = likes[1] ? aux - 1 : aux + 1;
+    setAux(nuevoAux);
+    console.log("nuevo aux " + nuevoAux);
+
+    const nuevoComentario = nuevoAux.toString();
+
+    // actualiza el comentario antiguo si existe
+    if (likes[1]) {
+      await actualizarComentario(id, nuevoComentario);
+    } else {
+      if (id == "") {
+        await sendRequest({ nuevoComentario });
+      } else {
+        await actualizarComentario(id, nuevoComentario);
+      }
     }
 
-    const [likes, setLikes] = useLocalStorage(info.name, [comentario, false]);
-    let aux;
-    
-    if(likes[1]){
-      aux = Number(likes[0]) - 1;
-    }else{
-      aux = Number(likes[0]) + 1;
-    }
-    setLikes([aux, !likes[1]]);
-
-    return(
-      <Button
-        colorScheme={likes[1] ? "teal" : "gray"}
-        onClick={handleLikedClick}>
-          Like
-      </Button>
-    )
-    
+    const nuevoLikes = [nuevoComentario, !likes[1], id];
+    setLikes(nuevoLikes);
   }
 
   return (
@@ -102,9 +114,10 @@ function DrawerInfo({ info }) {
         Mas informacion
       </Button>
 
-      <Button onClick={handleLikedClick}>
+      <Button onClick={handleLikedClick} colorScheme={likes[1] ? "teal" : "gray"}>
         likes
       </Button>
+      {likes[0]}
 
       <Drawer
         isOpen={isOpen}
