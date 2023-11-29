@@ -66,10 +66,11 @@ function InformacionDrawer({ info }) {
   useEffect(() => {
     const fetchData = async () => {
       // Query : idItem
-      const response = await fetch("/api/searchIdItem?idItem=" + info.name);
+      const response = await fetch("https://info104-2023-2-db.onrender.com/api/comentarios?idItem=" + info.name,{ method: "GET"});
       const data = await response.json();
 
       setNombre(data);
+      console.log("dato segun el nombre" + data);
     };
     fetchData();
     if (nombre.length != 0) {

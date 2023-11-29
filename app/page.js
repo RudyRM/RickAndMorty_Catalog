@@ -1,13 +1,11 @@
 "use client";
 
 // Importe Elementos Next
-import Image from "next/image";
 import Script from "next/script";
-import { useLocalStorage } from "./useLocalStorage";
 import { Mostrar } from "./Mostrar";
 
 // Importe Funciones React
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Input, InputGroup, InputRightElement } from '@chakra-ui/react'  
 
 // Importe Elementos Chakra
