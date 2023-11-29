@@ -14,7 +14,7 @@ import { InformacionDrawer } from "./InformacionDrawer";
 
 function Mostrar({ info }) {
   return (
-    <Card className="carta" mb={2} size="sm">
+    <Card className="carta" mb={2} size="sm" borderRadius="15" >
       <CardHeader>{info.name}</CardHeader>
       <CardBody>
         <Image
@@ -26,7 +26,7 @@ function Mostrar({ info }) {
               : "https://www.youtube.com/watch?v=x4LqqxYQhtQ"
           }
           priority
-          style={{ width: "100%", height: "auto", borderRadius: "4%" }}
+          style={{ width: "100%", height: "auto", borderRadius: "5%" }}
           src={info.image}
           width={"100"}
           height={"100"}
