@@ -27,7 +27,6 @@ import {
 
 function InformacionDrawer({ info }) {
   const [aux, setAux] = useState(0);
-  const [datos, setDatos] = useState({});
   const [id, setId] = useState("");
   const [nombre, setNombre] = useState([]);
   const [likes, setLikes] = useLocalStorage(info.name, ["0", false, ""]);
@@ -61,48 +60,31 @@ function InformacionDrawer({ info }) {
       }),
     });
     const data = await response.json();
-    console.log("se posteo " + data._id);
     setId(data._id);
   };
-
-  const sendDeleteAction = async () => {
-    const response = await fetch(`/api/ejemplo-5/${id}`, {
-      method: "DELETE",
-    });
-    console.log(response);
-    const data = await response.json();
-    console.log(data);
-    setComentario(data);
-  };
-
-
 
   useEffect(() => {
     const fetchData = async () => {
       // Query : idItem
-      const response = await fetch("/api/searchIdItem?idItem=" + info.name);
+      const response = await fetch("https://info104-2023-2-db.onrender.com/api/comentarios?idItem=" + info.name,{ method: "GET"});
       const data = await response.json();
 
       setNombre(data);
+      console.log("dato segun el nombre" + data);
     };
     fetchData();
-    console.log("entra al useEffect");
     if (nombre.length != 0) {
       setId(nombre[0]._id);
       setLikes([nombre[0].comentario, false, nombre[0]._id]);
       setAux(Number(nombre[0].comentario));
-      console.log("entro al if del fetch data " + nombre[0]._id);
     }
   }, []);
 
 
 
   const handleLikedClick = async () => {
-    console.log("aux " + aux);
     const nuevoAux = likes[1] ? aux - 1 : aux + 1;
     setAux(nuevoAux);
-    console.log("nuevo aux " + nuevoAux);
-
     const nuevoComentario = nuevoAux.toString();
 
     // actualiza el comentario antiguo si existe
