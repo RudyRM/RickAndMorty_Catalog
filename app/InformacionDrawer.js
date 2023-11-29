@@ -110,9 +110,8 @@ function InformacionDrawer({ info }) {
 
   return (
     <>
-      <div >
       <Button
-        className="boton-like" classonClick={handleLikedClick} colorScheme={likes[1] ? "teal" : "gray"} style={{ marginRight: '10px' }}>
+        className="boton-like" onClick={handleLikedClick} colorScheme={likes[1] ? "teal" : "gray"} style={{ marginRight: '10px' }}>
          
       {likes[0]} likes
       </Button>
@@ -126,7 +125,7 @@ function InformacionDrawer({ info }) {
         Información
       </Button>
 
-      </div>
+    
       <Drawer
         isOpen={isOpen}
         placement="right"
