@@ -6,7 +6,12 @@
 
 .boton-info{
   font-size: 3.2vw;
-  width: 100%;
+  width: 60%;
+}
+
+.boton-like{
+  font-size: 3.2vw;
+  width: 30%;
 }
 
 .boton-episodios{
@@ -41,7 +46,7 @@
 
 .boton-busqueda{
   margin-top: 8px;
-  margin-right: 35vw;
+  margin-right: 30%;
   background-color: rgb(71,179,201);
 }
 
@@ -49,7 +54,12 @@
 
   .boton-info{
     font-size: 1.3vw;
-    width: 100%;
+    width: 60%;
+  }
+
+  .boton-like{
+    font-size: 1.3vw;
+    width: 30%;
   }
 
   .boton-avance{
@@ -65,7 +75,7 @@
   
   .boton-busqueda{
     margin-top: 8px;
-    margin-right: 58.5vw;
+    margin-right: 21vw;
     background-color: rgb(71,179,201);
   }
 }

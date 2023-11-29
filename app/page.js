@@ -182,12 +182,12 @@ export default function Main() {
             <InputGroup className="center-barra">
               <Input id='query' value={inputValue}
         onChange={handleInputChange} className='barra-busqueda' placeholder='Búsqueda' size='lg' />
-              <InputRightElement width='4.5rem'>
+              <InputRightElement>
                 <Button id='boton-busqueda' className="boton-busqueda"size='md' onClick={CambioPagina}>
-                <Search2Icon color={'white'}></Search2Icon>
+                  <Search2Icon color={'white'}></Search2Icon>
                 </Button>
               </InputRightElement>
-          </InputGroup>
+            </InputGroup>
           <div>
           </div>
           <div className="contenedor-botones">
