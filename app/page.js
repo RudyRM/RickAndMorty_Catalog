@@ -39,6 +39,8 @@ import {
   SimpleGrid,
   Stack,
   Text,
+  Radio,
+  RadioGroup,
   UnorderedList,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -64,11 +66,11 @@ export default function Main() {
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
+
   const [likes, setLikes] = useLocalStorage("likes", "0");
   
   console.log(likes);
   
-
   useEffect(() => {
     console.log("Entró al use effect")
     const fetchData = async () => {
@@ -81,6 +83,31 @@ export default function Main() {
     fetchData();
     console.log("Salió al use effect")
   }, [pagina]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [selectedGender, setSelectedGender] = useState("");
+
+  // Function to handle radio button change
+  const handleGenderChange = (gender) => {
+    setSelectedGender(gender);
+    console.log("Selected gender:", gender);
+  };
+
+  const [selectedStatus, setSelectedStatus] = useState("");
+
+  // Function to handle radio button change
+  const handleStatusChange = (status) => {
+    setSelectedStatus(status);
+    console.log("Selected status:", status);
+  };
+
+  const [selectedSpecies, setSelectedSpecies] = useState("");
+
+  // Function to handle radio button change
+  const handleSpeciesChange = (species) => {
+    setSelectedSpecies(species);
+    console.log("Selected status:", species);
+  };
 
   const CambioPagina = async (event) => {
     const boton = event.target;
@@ -89,7 +116,7 @@ export default function Main() {
     var paginas = datos.info.pages;
     var nombre = document.getElementById('query').value;
 
-    await setLoading(true);
+    setLoading(true);
 
     if (boton.id.includes("boton-primera-pag"))
       setPagina("https://rickandmortyapi.com/api/character?page=1&name=" + nombre);
@@ -101,6 +128,10 @@ export default function Main() {
       setPagina(data.prev);
     else if (boton.id.includes("boton-busqueda"))
       setPagina("https://rickandmortyapi.com/api/character/?name=" + nombre);
+    else if (boton.id.includes("boton-filtros")){
+      setPagina("https://rickandmortyapi.com/api/character/?gender=" + selectedGender + "&status=" + selectedStatus + "&species=" + selectedSpecies);
+      onClose();
+    }
 
   };
 
@@ -121,7 +152,55 @@ export default function Main() {
             <img src={"/rm_logo.png"} />
           </div>
           <div className="boton-filtro">
-            <ModalFiltros />
+          <Button onClick={onOpen} className="boton-avance">
+        Filtros
+      </Button>
+
+      <Modal isOpen={isOpen} onClose={onClose} size={"lg"} className="modal">
+        <ModalOverlay />
+        <ModalContent className="modal">
+          <ModalHeader>Filtros</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            Genero:
+            <RadioGroup onChange={handleGenderChange} value={selectedGender}>
+              <Stack direction="row">
+                <Radio value="">All</Radio>
+                <Radio value="male">Male</Radio>
+                <Radio value="female">Female</Radio>
+                <Radio value="genderless">Genderless</Radio>
+                <Radio value="unknown">Unknown</Radio>
+              </Stack>
+            </RadioGroup>
+            Status:
+            <RadioGroup onChange={handleStatusChange} value={selectedStatus}>
+              <Stack direction="row">
+                <Radio value="">All</Radio>
+                <Radio value="alive">Alive</Radio>
+                <Radio value="dead">Dead</Radio>
+                <Radio value="unknown">Unknown</Radio>
+              </Stack>
+            </RadioGroup>
+            Species:
+            <RadioGroup onChange={handleSpeciesChange} value={selectedSpecies}>
+              <Stack direction="row">
+                <Radio value="">All</Radio>
+                <Radio value="human">Human</Radio>
+                <Radio value="humanoid">Humanoid</Radio>
+                <Radio value="alien">Alien</Radio>
+                <Radio value="robot">Robot</Radio>
+              </Stack>
+            </RadioGroup>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="gray" mr={3} onClick={onClose}>
+              Cerrar
+            </Button>
+            <Button colorScheme="cyan" onClick={CambioPagina} id="boton-filtros">Aplicar</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
           </div>
             <InputGroup className="center-barra">
               <Input id='query' value={inputValue}
@@ -226,47 +305,3 @@ export default function Main() {
   );
 }
 
-function ModalFiltros() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  return (
-    <>
-      <Button onClick={onOpen} className="boton-avance">
-        Filtros
-      </Button>
-
-      <Modal isOpen={isOpen} onClose={onClose} size={"lg"}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Filtros</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            Genero:
-            <CheckboxGroup colorScheme="green">
-              <Stack spacing={[1, 4]} direction={["column", "row"]}>
-                <Checkbox value="male">Male</Checkbox>
-                <Checkbox value="female">Female</Checkbox>
-                <Checkbox value="genderless">Genderless</Checkbox>
-                <Checkbox value="unknown">Unknown</Checkbox>
-              </Stack>
-              Status:
-            </CheckboxGroup>
-            <CheckboxGroup colorScheme="green">
-              <Stack spacing={[1, 3]} direction={["column", "row"]}>
-                <Checkbox value="alive">Alive</Checkbox>
-                <Checkbox value="dead">Dead</Checkbox>
-                <Checkbox value="unknown">Unknown</Checkbox>
-              </Stack>
-            </CheckboxGroup>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Cerrar
-            </Button>
-            <Button>Aplicar</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
-  );
-}
