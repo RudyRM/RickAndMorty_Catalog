@@ -12,23 +12,9 @@ import { Input, InputGroup, InputRightElement } from '@chakra-ui/react'
 
 // Importe Elementos Chakra
 import {
-  Card,
-  CardBody,
-  CardHeader,
-  CardFooter,
-  Checkbox,
-  CheckboxGroup,
   CircularProgress,
-  Collapse,
   Button,
   ButtonGroup,
-  Box,
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  ListItem,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -41,14 +27,11 @@ import {
   Text,
   Radio,
   RadioGroup,
-  UnorderedList,
   useDisclosure,
 } from "@chakra-ui/react";
 
 // Importe Iconos Chakra
 import {
-  ArrowDownIcon,
-  ArrowForwardIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
   Search2Icon
@@ -66,10 +49,6 @@ export default function Main() {
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
-
-  const [likes, setLikes] = useLocalStorage("likes", "0");
-  
-  console.log(likes);
   
   useEffect(() => {
     console.log("Entró al use effect")
