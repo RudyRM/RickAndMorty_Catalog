@@ -8,6 +8,7 @@ import { Mostrar } from "./Mostrar";
 
 // Importe Funciones React
 import { useRef, useEffect, useState } from "react";
+import { Input, InputGroup, InputRightElement } from '@chakra-ui/react'  
 
 // Importe Elementos Chakra
 import {
@@ -48,6 +49,7 @@ import {
   ArrowForwardIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
+  Search2Icon
 } from "@chakra-ui/icons";
 
 export default function Main() {
@@ -57,35 +59,49 @@ export default function Main() {
   );
   const [datos, setDatos] = useState({});
   const [loading, setLoading] = useState(true);
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
   const [likes, setLikes] = useLocalStorage("likes", "0");
   
   console.log(likes);
   
 
   useEffect(() => {
+    console.log("Entró al use effect")
     const fetchData = async () => {
       const response = await fetch(pagina, { method: "GET" });
       const data = await response.json();
 
-      setDatos(data);
+      await setDatos(data);
       setLoading(false);
     };
     fetchData();
+    console.log("Salió al use effect")
   }, [pagina]);
 
   const CambioPagina = async (event) => {
     const boton = event.target;
 
-    setLoading(true);
+    var data = datos.info;
+    var paginas = datos.info.pages;
+    var nombre = document.getElementById('query').value;
+
+    await setLoading(true);
 
     if (boton.id.includes("boton-primera-pag"))
-      setPagina("https://rickandmortyapi.com/api/character?page=1");
+      setPagina("https://rickandmortyapi.com/api/character?page=1&name=" + nombre);
     else if (boton.id.includes("boton-ultima-pag"))
-      setPagina("https://rickandmortyapi.com/api/character?page=42");
+      setPagina("https://rickandmortyapi.com/api/character?page=" + paginas + "&name=" + nombre);
     else if (boton.id.includes("boton-siguiente-pag"))
-      setPagina(datos.info.next);
+      setPagina(data.next);
     else if (boton.id.includes("boton-anterior-pag"))
-      setPagina(datos.info.prev);
+      setPagina(data.prev);
+    else if (boton.id.includes("boton-busqueda"))
+      setPagina("https://rickandmortyapi.com/api/character/?name=" + nombre);
+
   };
 
   return (
@@ -106,6 +122,17 @@ export default function Main() {
           </div>
           <div className="boton-filtro">
             <ModalFiltros />
+          </div>
+            <InputGroup className="center-barra">
+              <Input id='query' value={inputValue}
+        onChange={handleInputChange} className='barra-busqueda' placeholder='Búsqueda' size='lg' />
+              <InputRightElement width='4.5rem'>
+                <Button id='boton-busqueda' className="boton-busqueda"size='md' onClick={CambioPagina}>
+                <Search2Icon color={'white'}></Search2Icon>
+                </Button>
+              </InputRightElement>
+          </InputGroup>
+          <div>
           </div>
           <div className="contenedor-botones">
             <ButtonGroup spacing="2vw">

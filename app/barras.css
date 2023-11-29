@@ -1,0 +1,22 @@
+.center-barra{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.barra-busqueda{
+  width: 60vw;
+  font-family: myFirstFont;
+  border: 3px solid rgb(71,179,201);
+  background-color: azure;
+}
+
+@media (min-width: 992px) {
+  .barra-busqueda{
+    width: 40vw;
+    font-family: myFirstFont;
+    border: 3px solid rgb(71,179,201);
+    background-color: azure;
+  }
+}

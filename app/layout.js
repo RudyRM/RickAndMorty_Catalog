@@ -3,6 +3,7 @@ import "./globals.css";
 import './botones.css'
 import './cartas.css'
 import './grilla.css'
+import './barras.css'
 
 import { Providers } from "@/app/providers/provider";
 
