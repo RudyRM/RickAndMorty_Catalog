@@ -3,10 +3,11 @@
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  margin-left: 18%;
+  width: 60vw;
 }
 
 .barra-busqueda{
-  width: 60vw;
   font-family: myFirstFont;
   border: 3px solid rgb(71,179,201);
   background-color: azure;

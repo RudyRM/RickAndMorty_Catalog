@@ -122,6 +122,12 @@ function InformacionDrawer({ info }) {
 
   return (
     <>
+      <div >
+      <Button
+        className="boton-like" classonClick={handleLikedClick} colorScheme={likes[1] ? "teal" : "gray"} style={{ marginRight: '10px' }}>
+         
+      {likes[0]} likes
+      </Button>
       <Button
         className="boton-info"
         rightIcon={<ArrowForwardIcon />}
@@ -129,14 +135,10 @@ function InformacionDrawer({ info }) {
         colorScheme="teal"
         onClick={onOpen}
       >
-        Más información
+        Información
       </Button>
 
-      <Button onClick={handleLikedClick} colorScheme={likes[1] ? "teal" : "gray"}>
-        likes
-      </Button>
-      {likes[0]}
-
+      </div>
       <Drawer
         isOpen={isOpen}
         placement="right"
