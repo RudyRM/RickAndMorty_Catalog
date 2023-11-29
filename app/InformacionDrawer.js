@@ -70,15 +70,21 @@ function InformacionDrawer({ info }) {
       const data = await response.json();
 
       setNombre(data);
-      console.log("dato segun el nombre" + data);
+    
+      if(data.length != 0){
+        var sumaLikes = 0;
+        for(let i = 0; i < data.length; i++)
+          sumaLikes += Number(data[i].comentario);
+        setAux(sumaLikes);
+      }
     };
     fetchData();
     if (nombre.length != 0) {
       setId(nombre[0]._id);
-      setLikes([nombre[0].comentario, false, nombre[0]._id]);
+      setLikes([nombre[0].comentario, likes[1], nombre[0]._id]);
       setAux(Number(nombre[0].comentario));
     }
-  }, []);
+  }, [aux]);
 
 
 
