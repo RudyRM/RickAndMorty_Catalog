@@ -41,7 +41,7 @@
 
 .boton-busqueda{
   margin-top: 8px;
-  margin-right: 58.5vw;
+  margin-right: 35vw;
   background-color: rgb(71,179,201);
 }
 
@@ -61,5 +61,11 @@
     &:hover {
       background-color: rgb(59, 146, 164);
     }
+  }
+  
+  .boton-busqueda{
+    margin-top: 8px;
+    margin-right: 58.5vw;
+    background-color: rgb(71,179,201);
   }
 }
