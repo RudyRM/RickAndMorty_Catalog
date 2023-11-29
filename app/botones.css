@@ -39,6 +39,12 @@
   width: 100%;
 }
 
+.boton-busqueda{
+  margin-top: 8px;
+  margin-right: 58.5vw;
+  background-color: rgb(71,179,201);
+}
+
 @media (min-width: 992px) {
 
   .boton-info{
