@@ -17,20 +17,30 @@ function Mostrar({ info }) {
     <Card className="carta" mb={2} size="sm" borderRadius="15" >
       <CardHeader>{info.name}</CardHeader>
       <CardBody>
-        <Image
+        {info.id == 1 ? (
+          <a
+          target="_blank" 
+          href="https://www.youtube.com/watch?v=x4LqqxYQhtQ">
+            <Image
           alt="foto-carta"
           className="imagen-personaje"
-          href={
-            info.name == "Rick Sanchez"
-              ? ""
-              : "https://www.youtube.com/watch?v=x4LqqxYQhtQ"
-          }
+          style={{ width: "100%", height: "auto", borderRadius: "5%" }}
+          src={info.image}
+          width={"100"}
+          height={"100"}
+        />
+          </a>
+        ):(
+          <Image
+          alt="foto-carta"
+          className="imagen-personaje"
           priority
           style={{ width: "100%", height: "auto", borderRadius: "5%" }}
           src={info.image}
           width={"100"}
           height={"100"}
         />
+        )}
       </CardBody>
       <CardFooter>
         <InformacionDrawer info={info} />
